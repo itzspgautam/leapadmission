@@ -56,7 +56,7 @@ const UniversityCarausel = () => {
         swipeable
       >
         {Images.UNIVERSITIES.map((e) => (
-          <Box p="2">
+          <Box p="2" key={e}>
             <Center
               h={"50px"}
               bg="white"
@@ -66,6 +66,7 @@ const UniversityCarausel = () => {
             >
               <Image
                 src={require(`../../Assets/Images/University/${e}.webp`)}
+                alt="University"
               />
             </Center>
           </Box>

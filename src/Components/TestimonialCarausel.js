@@ -71,7 +71,7 @@ const TestimonialCarausel = () => {
         swipeable
       >
         {Images.UNIVERSITIES.map((e) => (
-          <Box p="4">
+          <Box p="4" key={e}>
             <Center
               borderRadius={["md", "lg"]}
               p="4"
@@ -84,6 +84,7 @@ const TestimonialCarausel = () => {
                 <Image
                   height={100}
                   src={Images.USER_DEFAULT}
+                  alt="User"
                   style={{
                     marginTop: "-50px",
                     borderRadius: "100%",

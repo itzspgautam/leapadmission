@@ -51,7 +51,7 @@ const Navbar = () => {
         gap="10"
         zIndex={2}
       >
-        <Image src={Images.LOGO_WIDE} height="35" />
+        <Image src={Images.LOGO_WIDE} height="35" alt="LeapAdmission Logo" />
         <UnorderedList
           listStyleType={"none"}
           display="flex"
@@ -90,6 +90,7 @@ const Navbar = () => {
             src={Images.USER_DEFAULT}
             height="50"
             width="50"
+            alt="user"
           />
         </Center>
       </Center>
@@ -109,7 +110,7 @@ const Navbar = () => {
         <NavDrawer>
           <TbAlignLeft size={25} />
         </NavDrawer>
-        <Image src={Images.LOGO_WIDE} height="30" />
+        <Image src={Images.LOGO_WIDE} height="30" alt="logo" />
 
         <Center justifyContent={"flex-end"} gap="5">
           <Image
@@ -117,6 +118,7 @@ const Navbar = () => {
             src={Images.USER_DEFAULT}
             height="40"
             width="40"
+            alt="user"
           />
         </Center>
       </Center>

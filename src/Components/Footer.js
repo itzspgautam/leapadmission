@@ -52,7 +52,7 @@ export default function Footer() {
         justify={"center"}
         align={"center"}
       >
-        <Image src={Images.LOGO_WIDE} height="50" />
+        <Image src={Images.LOGO_WIDE} height="50" alt="Logo" />
         <Stack direction={"row"} spacing={6}>
           <Link href={"#"}>Home</Link>
           <Link href={"#"}>About</Link>
