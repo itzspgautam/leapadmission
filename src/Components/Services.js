@@ -30,21 +30,21 @@ export default function Services() {
           icon={<Icon as={FcApproval} w={10} h={10} />}
           title={"Application"}
           text={
-            "I offer a complete service that includes evaluating the student's academic record, establishing reachable goals, advising the student throughout the application process, and advocating for the student. "
+            "We offer a complete service that includes evaluating the student's academic record, establishing reachable goals, advising the student throughout the application process, and advocating for the student. "
           }
         />
         <Feature
           icon={<Icon as={FcAcceptDatabase} w={10} h={10} />}
           title={"Admission"}
           text={
-            "I offer a complimentary one-hour service to go over the application process with the student and their family. After this initial consultation, I follow up with the family to recommend an appropriate service for their needs."
+            "We offer a complimentary one-hour service to go over the application process with the student and their family. After this initial consultation, We follow up with the family to recommend an appropriate service for their needs."
           }
         />
         <Feature
           icon={<Icon as={FcCalendar} w={10} h={10} />}
           title={"Hourly Consultations"}
           text={
-            "I am available on an hourly basis to give families advice about finding the right college, writing applications, standardized testing, and more."
+            "We are available on an hourly basis to give families advice about finding the right college, writing applications, standardized testing, and more."
           }
         />
       </SimpleGrid>
