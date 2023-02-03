@@ -1,13 +1,5 @@
 import { Images } from "@/Constants";
-import {
-  Avatar,
-  Box,
-  Card,
-  Center,
-  Container,
-  Flex,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 import Carousel from "react-multi-carousel";
@@ -47,13 +39,13 @@ const TestimonialCarausel = () => {
     >
       <Text
         as={"h2"}
-        fontSize={[28, 32, 38]}
+        fontSize={[22, 24, 30]}
         fontWeight={"bold"}
         color="teal.900"
         lineHeight={"1"}
         textAlign="center"
       >
-        Testimonoals
+        Testimonials
       </Text>
       <Carousel
         additionalTransfrom={0}

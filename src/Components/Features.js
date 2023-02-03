@@ -10,16 +10,7 @@ import {
   useColorModeValue,
   Box,
 } from "@chakra-ui/react";
-import {
-  IoAnalyticsSharp,
-  IoCalendar,
-  IoEnter,
-  IoHelp,
-  IoLogoBitcoin,
-  IoPencil,
-  IoSearchSharp,
-} from "react-icons/io5";
-import { ReactElement } from "react";
+import { IoCalendar, IoEnter, IoPencil } from "react-icons/io5";
 import { Images } from "@/Constants";
 import Image from "next/image";
 

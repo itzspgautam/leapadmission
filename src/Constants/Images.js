@@ -6,5 +6,12 @@ export const Images = {
   WCU_SUPPORT: require("../Assets/Images/support.png"),
 
   UNIVERSITIES: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+
+  FLAG: [1, 2, 3, 4],
+
   OUR_STORY: require("../Assets/Images/ourStory.jpg"),
+
+  MISSION_VISSION_BG: require("../Assets/Images/vision-mission-bg.jpg"),
+
+  CONTACT_GIRL: require("../Assets/Images/contact.png"),
 };

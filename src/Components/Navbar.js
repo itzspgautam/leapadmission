@@ -1,5 +1,6 @@
 import { Images } from "@/Constants";
 import {
+  Avatar,
   Button,
   Center,
   ListItem,
@@ -8,19 +9,22 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+import { AiOutlineHome, AiOutlineInfo, AiOutlinePhone } from "react-icons/ai";
 import { RiPhoneFill, RiSearch2Line } from "react-icons/ri";
 import { TbAlignLeft } from "react-icons/tb";
+import LoginDrawer from "./Auth/LoginDrawer";
 import NavDrawer from "./Drawer";
 
 const NavPages = [
-  { _id: 1, title: "Home", link: "/" },
-  { _id: 2, title: "About Us", link: "/about" },
-  { _id: 3, title: "Contacts", link: "/contacts" },
-  // { _id: 1, title: "Community", link: "/home" },
+  { _id: 1, title: "Home", link: "/", icon: <AiOutlineHome /> },
+  { _id: 2, title: "About Us", link: "/about", icon: <AiOutlineInfo /> },
+  { _id: 3, title: "Contacts", link: "/contacts", icon: <AiOutlinePhone /> },
 ];
 
 const Navbar = () => {
+  const router = useRouter();
   return (
     <>
       <Center display={["none", "none", "flex"]} bg="teal.900" p="2" gap="2">
@@ -39,14 +43,14 @@ const Navbar = () => {
       <Center
         display={["none", "none", "flex"]}
         justifyContent={"space-between"}
-        px="10"
+        px="14"
         py="2"
         boxShadow={"sm"}
         borderBottom="1px solid"
         borderBottomColor={"gray.200"}
         position="sticky"
         top="0"
-        bg="rgba(255, 255, 255, .5)"
+        bg="rgba(255, 255, 255, .9)"
         backdropFilter={"blur(50px)"}
         gap="10"
         zIndex={2}
@@ -61,7 +65,12 @@ const Navbar = () => {
         >
           {NavPages.map((page) => (
             <Link href={page.link} key={page._id}>
-              <ListItem color={"blue.800"}>{page.title}</ListItem>
+              <ListItem
+                color={router.pathname === page.link ? "teal" : "teal.900"}
+                fontWeight={router.pathname === page.link ? "semibold" : ""}
+              >
+                {page.title}
+              </ListItem>
             </Link>
           ))}
         </UnorderedList>
@@ -85,21 +94,22 @@ const Navbar = () => {
           <Button colorScheme="teal" h="10">
             <RiPhoneFill size="20" />
           </Button>
-          <Image
-            style={{ borderRadius: "50%" }}
-            src={Images.USER_DEFAULT}
-            height="50"
-            width="50"
-            alt="user"
-          />
+          <LoginDrawer>
+            <Avatar
+              name="Leap Admission User"
+              size={"md"}
+              src={Images.USER_DEFAULT.default.src}
+              alt="user"
+            />
+          </LoginDrawer>
         </Center>
       </Center>
 
       <Center
         display={["flex", "flex", "none"]}
         justifyContent={"space-between"}
-        px="2"
-        py="2"
+        px="4"
+        py="3"
         boxShadow={"sm"}
         position="sticky"
         top="0"
@@ -107,19 +117,20 @@ const Navbar = () => {
         backdropFilter={"blur(50px)"}
         zIndex={2}
       >
-        <NavDrawer>
+        <NavDrawer pages={NavPages} path={router.pathname}>
           <TbAlignLeft size={25} />
         </NavDrawer>
         <Image src={Images.LOGO_WIDE} height="30" alt="logo" />
 
         <Center justifyContent={"flex-end"} gap="5">
-          <Image
-            style={{ borderRadius: "50%" }}
-            src={Images.USER_DEFAULT}
-            height="40"
-            width="40"
-            alt="user"
-          />
+          <LoginDrawer>
+            <Avatar
+              name="Leap Admission User"
+              size={"md"}
+              src={Images.USER_DEFAULT.default.src}
+              alt="user"
+            />
+          </LoginDrawer>
         </Center>
       </Center>
     </>

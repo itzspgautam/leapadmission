@@ -1,15 +1,5 @@
-import { ReactElement } from "react";
 import { Box, SimpleGrid, Icon, Text, Stack, Flex } from "@chakra-ui/react";
-import {
-  FcAcceptDatabase,
-  FcAddressBook,
-  FcApproval,
-  FcAssistant,
-  FcBookmark,
-  FcCalendar,
-  FcDonate,
-  FcInTransit,
-} from "react-icons/fc";
+import { FcAcceptDatabase, FcApproval, FcCalendar } from "react-icons/fc";
 
 const Feature = ({ title, text, icon }) => {
   return (

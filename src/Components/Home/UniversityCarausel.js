@@ -1,5 +1,5 @@
 import { Images } from "@/Constants";
-import { Box, Card, Center, Container, Text } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 import Carousel from "react-multi-carousel";

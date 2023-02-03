@@ -1,10 +1,8 @@
 import { Images } from "@/Constants";
 import {
   AspectRatio,
-  Badge,
   Box,
   Button,
-  color,
   Flex,
   Heading,
   Text,
@@ -57,15 +55,10 @@ const Hero = () => {
           pt={[12, 0, "15vh"]}
           pl={[3, 10, "100px"]}
         >
-          <Text
-            as={"h1"}
-            fontSize={[30, 34, 44]}
-            fontWeight={"950"}
-            color="teal.900"
-          >
+          <Heading fontSize={[30, 34, 50]} fontWeight={900} color="teal.900">
             Chase Your Dream
             <br /> <span style={{ color: "#319795" }}>With Us</span>
-          </Text>
+          </Heading>
           <Text fontSize={[16, 16, 20]} color={"gray.500"}>
             We Will Ensure That You Again Admission to the University That Best
             Suits Your Goals and Aspirations.
