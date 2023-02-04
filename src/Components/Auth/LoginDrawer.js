@@ -13,10 +13,22 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
+import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import UserActions from "@/State/Actions/UserActions";
 
 const LoginDrawer = (props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const GoogleAuth = new GoogleAuthProvider();
+  const FacebookAuth = new FacebookAuthProvider();
+
+  const dispatch = useDispatch();
+
   const btnRef = React.useRef();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const socialLogin = async (provider) => {
+    dispatch(UserActions.socialLogin(provider));
+  };
 
   return (
     <>
@@ -50,6 +62,7 @@ const LoginDrawer = (props) => {
                   variant="solid"
                   justifyContent={"flex-start"}
                   borderRadius="sm"
+                  onClick={() => socialLogin(GoogleAuth)}
                 >
                   Continue with Google
                 </Button>
@@ -59,6 +72,7 @@ const LoginDrawer = (props) => {
                   colorScheme="facebook"
                   justifyContent={"flex-start"}
                   borderRadius="sm"
+                  onClick={() => socialLogin(FacebookAuth)}
                 >
                   Continue with facebook
                 </Button>

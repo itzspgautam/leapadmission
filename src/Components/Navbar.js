@@ -1,9 +1,14 @@
 import { Images } from "@/Constants";
+import UserActions from "@/State/Actions/UserActions";
 import {
   Avatar,
   Button,
   Center,
   ListItem,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
@@ -14,6 +19,7 @@ import React from "react";
 import { AiOutlineHome, AiOutlineInfo, AiOutlinePhone } from "react-icons/ai";
 import { RiPhoneFill, RiSearch2Line } from "react-icons/ri";
 import { TbAlignLeft } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
 import LoginDrawer from "./Auth/LoginDrawer";
 import NavDrawer from "./Drawer";
 
@@ -25,6 +31,11 @@ const NavPages = [
 
 const Navbar = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.User);
+  const logout = () => {
+    dispatch(UserActions.logout());
+  };
   return (
     <>
       <Center display={["none", "none", "flex"]} bg="teal.900" p="2" gap="2">
@@ -94,14 +105,33 @@ const Navbar = () => {
           <Button colorScheme="teal" h="10">
             <RiPhoneFill size="20" />
           </Button>
-          <LoginDrawer>
-            <Avatar
-              name="Leap Admission User"
-              size={"md"}
-              src={Images.USER_DEFAULT.default.src}
-              alt="user"
-            />
-          </LoginDrawer>
+          {user ? (
+            <Menu>
+              <MenuButton>
+                <Avatar
+                  name={user.displayName}
+                  size={"md"}
+                  src={user.photoURL}
+                  alt="user"
+                  borderWidth={"3px"}
+                  borderColor="gray.300"
+                />
+              </MenuButton>
+              <MenuList>
+                {/* <MenuItem>Profile</MenuItem> */}
+                <MenuItem onClick={logout}>Logout</MenuItem>
+              </MenuList>
+            </Menu>
+          ) : (
+            <LoginDrawer>
+              <Avatar
+                name="Leap Admission User"
+                size={"md"}
+                src={Images.USER_DEFAULT.default.src}
+                alt="user"
+              />
+            </LoginDrawer>
+          )}
         </Center>
       </Center>
 
@@ -123,14 +153,33 @@ const Navbar = () => {
         <Image src={Images.LOGO_WIDE} height="30" alt="logo" />
 
         <Center justifyContent={"flex-end"} gap="5">
-          <LoginDrawer>
-            <Avatar
-              name="Leap Admission User"
-              size={"md"}
-              src={Images.USER_DEFAULT.default.src}
-              alt="user"
-            />
-          </LoginDrawer>
+          {user ? (
+            <Menu>
+              <MenuButton>
+                <Avatar
+                  name={user.displayName}
+                  size={"md"}
+                  src={user.photoURL}
+                  alt="user"
+                  borderWidth={"3px"}
+                  borderColor="gray.300"
+                />
+              </MenuButton>
+              <MenuList>
+                {/* <MenuItem>Profile</MenuItem> */}
+                <MenuItem onClick={logout}>Logout</MenuItem>
+              </MenuList>
+            </Menu>
+          ) : (
+            <LoginDrawer>
+              <Avatar
+                name="Leap Admission User"
+                size={"md"}
+                src={Images.USER_DEFAULT.default.src}
+                alt="user"
+              />
+            </LoginDrawer>
+          )}
         </Center>
       </Center>
     </>
