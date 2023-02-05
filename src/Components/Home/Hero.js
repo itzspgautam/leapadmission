@@ -59,9 +59,9 @@ const Hero = () => {
             Chase Your Dream
             <br /> <span style={{ color: "#319795" }}>With Us</span>
           </Heading>
-          <Text fontSize={[16, 16, 20]} color={"gray.500"}>
-            We Will Ensure That You Again Admission to the University That Best
-            Suits Your Goals and Aspirations.
+          <Text fontSize={[16, 16, 24]} color={"gray.500"}>
+            Apply to your Dream universities, with our expert guidance and
+            support from accomplished alumni and current students.
           </Text>
           <Flex gap="2" justifyContent={["center", "left"]} mt="2">
             <Button
