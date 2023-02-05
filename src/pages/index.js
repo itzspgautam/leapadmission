@@ -6,12 +6,14 @@ import {
   UniversityCarausel,
   WhyChooseUs,
 } from "@/Components";
+import Head from "next/head";
 
 import React from "react";
 
 const index = () => {
   return (
     <>
+      <Head></Head>
       <Hero />
       <UniversityCarausel />
       <WhyChooseUs />

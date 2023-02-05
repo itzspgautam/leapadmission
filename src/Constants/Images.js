@@ -1,5 +1,5 @@
 export const Images = {
-  LOGO_WIDE: require("../Assets/Images/logo-wide.svg"),
+  LOGO_WIDE: require("../Assets/Images/logo.png"),
   USER_DEFAULT: require("../Assets/Images/guest.png"),
   HRO_BG:
     "https://res.cloudinary.com/itzspgautam/video/upload/v1675245237/j4mc9agxzzylsbweeoj3.mp4",
