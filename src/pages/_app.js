@@ -1,4 +1,5 @@
 import { Layout } from "@/Components";
+import DbConnect from "@/Config/dbConfig";
 import UserActions from "@/State/Actions/UserActions";
 import { store } from "@/State/store";
 import theme from "@/Themes";

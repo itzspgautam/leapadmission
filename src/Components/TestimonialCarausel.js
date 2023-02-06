@@ -1,12 +1,12 @@
 import { Images } from "@/Constants";
-import { Box, Center, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Center, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FaQuoteRight } from "react-icons/fa";
 
-const TestimonialCarausel = () => {
+const TestimonialCarausel = ({ testimonials }) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -15,11 +15,11 @@ const TestimonialCarausel = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 2,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 1,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -62,28 +62,32 @@ const TestimonialCarausel = () => {
         slidesToSlide={1}
         swipeable
       >
-        {Images.UNIVERSITIES.map((e) => (
-          <Box p="4" key={e}>
+        {testimonials?.map((tsm) => (
+          <Box p="4" key={tsm._id}>
             <Center
               borderRadius={["md", "lg"]}
               p="4"
               bg="white"
               mt="10"
               flexDir={"column"}
+              justifyContent="flex-start"
               alignItems="left"
+              h="full"
             >
+              {/* <Avatar name={tsm.author} /> */}
               <Flex>
-                <Image
-                  height={100}
-                  src={Images.USER_DEFAULT}
-                  alt="User"
-                  style={{
-                    marginTop: "-50px",
-                    borderRadius: "100%",
-                    border: "4px solid white",
-                  }}
-                  size={"lg"}
-                ></Image>
+                <Avatar
+                  name={tsm.author}
+                  src={
+                    tsm.avatarURL
+                      ? tsm.avatarURL
+                      : Images.USER_DEFAULT.default.src
+                  }
+                  border="4px solid white"
+                  marginTop="-40px"
+                  size={"xl"}
+                />
+
                 <Box>
                   <Text
                     fontWeight={"bold"}
@@ -91,10 +95,10 @@ const TestimonialCarausel = () => {
                     color={"teal.800"}
                     lineHeight="1"
                   >
-                    Suraj Prakash Gautam
+                    {tsm.author}
                   </Text>
                   <Text fontWeight={"medium"} fontSize="12" color={"teal.600"}>
-                    Profession, University
+                    {tsm.description}
                   </Text>
                 </Box>
               </Flex>
@@ -106,9 +110,7 @@ const TestimonialCarausel = () => {
                 color={"gray.500"}
                 textAlign="justify"
               >
-                Laboris elit do occaecat id ad labore ut Lorem ea qui ea
-                excepteur sit. Occaecat eiusmod elit mollit irure minim aute in
-                elit est anim veniam nostrud culpa.
+                <span dangerouslySetInnerHTML={{ __html: tsm.message }} />
               </Text>
               <Flex w="100%" justifyContent={"flex-end"} color={"gray.400"}>
                 <FaQuoteRight />
