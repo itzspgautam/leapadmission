@@ -16,28 +16,29 @@ const WhyChooseUs = () => {
   const WhyChooseUs = [
     {
       _id: "1",
-      title: "No Charges",
+      title: "Premium Services for Free",
       image: Images.WCU_SUPPORT,
       color: "orange",
       icon: <BiMoney size="30" />,
     },
     {
       _id: "2",
-      title: "Personal Guideline",
+      title: "Your Personalised Admission Guru",
       image: Images.WCU_SUPPORT,
       color: "green",
       icon: <BiSupport size="30" />,
     },
     {
       _id: "3",
-      title: "Trusted Knowledge",
+      title:
+        "Get Insights from the Students and Alumni from the Same Universities",
       image: Images.WCU_SUPPORT,
       color: "teal",
       icon: <BiBook size="30" />,
     },
     {
       _id: "4",
-      title: "Available anytime",
+      title: "Available Anytime",
       image: Images.WCU_SUPPORT,
       color: "facebook",
       icon: <BiTime size="30" />,
@@ -92,7 +93,7 @@ const WhyChooseUs = () => {
               <Text
                 fontSize={[14, 16, 16]}
                 fontWeight="semibold"
-                lineHeight={1}
+                lineHeight={1.3}
                 color="teal.900"
               >
                 {item.title}

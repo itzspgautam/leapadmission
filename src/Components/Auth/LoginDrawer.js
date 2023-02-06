@@ -56,23 +56,25 @@ const LoginDrawer = (props) => {
             <DrawerBody mt="10" pb="200px" px="5">
               <Stack alignItems={"center"} spacing={4}>
                 <Button
-                  w="70%"
+                  w="100%"
                   leftIcon={<AiFillGoogleSquare size={30} />}
                   colorScheme="red"
                   variant="solid"
                   justifyContent={"flex-start"}
                   borderRadius="sm"
                   onClick={() => socialLogin(GoogleAuth)}
+                  fontSize={[14, 16]}
                 >
                   Continue with Google
                 </Button>
                 <Button
-                  w="70%"
+                  w="100%"
                   leftIcon={<AiFillFacebook size={30} />}
                   colorScheme="facebook"
                   justifyContent={"flex-start"}
                   borderRadius="sm"
                   onClick={() => socialLogin(FacebookAuth)}
+                  fontSize={[14, 16]}
                 >
                   Continue with facebook
                 </Button>

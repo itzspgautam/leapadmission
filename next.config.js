@@ -12,6 +12,7 @@ const nextConfig = {
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
     APP_ID: process.env.APP_ID,
     DB_URI: process.env.DB_URI,
+    ENDPOINT: process.env.ENDPOINT,
   },
 };
 

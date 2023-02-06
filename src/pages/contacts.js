@@ -18,6 +18,7 @@ import React from "react";
 import {
   AiOutlineFacebook,
   AiOutlineInstagram,
+  AiOutlineLinkedin,
   AiOutlineMail,
   AiOutlinePhone,
   AiOutlineTwitter,
@@ -145,7 +146,7 @@ const contacts = () => {
           align="center"
           mb="5"
         >
-          Our Social Media Handle
+          Follow us on
         </Text>
         <Center gap={5}>
           <IconButton
@@ -193,9 +194,17 @@ const contacts = () => {
           >
             <AiOutlineWhatsApp size={40} />
           </IconButton>
+          <IconButton
+            colorScheme={"linkedin"}
+            size="lg"
+            h="16"
+            w="16"
+            rounded={"sm"}
+          >
+            <AiOutlineLinkedin size={40} />
+          </IconButton>
         </Center>
       </Box>
-      <TestimonialCarausel />
     </Box>
   );
 };

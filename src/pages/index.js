@@ -25,9 +25,9 @@ const index = (props) => {
   );
 };
 
-export async function getStaticProps() {
-  const response = await axios.get("http://localhost:3000/api/testimonials");
+export const getServerSideProps = async () => {
+  const response = await axios.get(process.env.ENDPOINT + "/api/testimonials");
   return { props: { testimonials: response.data.testimonials } };
-}
+};
 
 export default index;

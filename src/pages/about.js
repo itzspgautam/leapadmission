@@ -232,7 +232,7 @@ const about = () => {
       <WhyChooseUs />
       <Features />
       <Services />
-      <TestimonialCarausel />
+      {/* <TestimonialCarausel /> */}
     </div>
   );
 };
