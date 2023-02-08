@@ -14,6 +14,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import Head from "next/head";
 import React from "react";
 import {
   AiOutlineFacebook,
@@ -30,6 +31,17 @@ import { FaPhone, FaUser } from "react-icons/fa";
 const contacts = () => {
   return (
     <Box>
+      <Head>
+        <title>Contacts | LeapAdmission</title>
+        <meta
+          name="keywords"
+          content="contacts leap admission,leapAdmission contacts, get in touch with leapAdmission,admission in abroad, admission in usa, free admission in abroad"
+        />
+        <meta
+          name="description"
+          content="Have a Question ? Need Some Help ? We are here for you Let’s Talk. Just Drop a Message For Us to Reach you.."
+        />
+      </Head>
       <Flex flexDir={["column", "column", "row"]}>
         <Flex
           bg="teal.400"

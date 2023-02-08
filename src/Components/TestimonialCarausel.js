@@ -62,7 +62,7 @@ const TestimonialCarausel = ({ testimonials }) => {
         slidesToSlide={1}
         swipeable
       >
-        {testimonials?.map((tsm) => (
+        {testimonials?.testimonials?.map((tsm) => (
           <Box p="4" key={tsm._id}>
             <Center
               borderRadius={["md", "lg"]}

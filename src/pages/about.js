@@ -20,9 +20,22 @@ import {
   WhyChooseUs,
 } from "@/Components";
 import { AiOutlineAim, AiOutlineEye } from "react-icons/ai";
-const about = () => {
+import axios from "axios";
+import Head from "next/head";
+const about = ({ testimonials }) => {
   return (
     <div>
+      <Head>
+        <title>About Us | LeapAdmission</title>
+        <meta
+          name="keywords"
+          content="about leap admission,leapAdmission information, study abroad, admission in usa, free admission in abroad"
+        />
+        <meta
+          name="description"
+          content="Our mission is to enabling every learner to study abroad by simplifying the process throughout their journey."
+        />
+      </Head>
       <Box
         h={["95vh", "90vh", "90vh"]}
         bgColor={"teal.50"}
@@ -232,9 +245,14 @@ const about = () => {
       <WhyChooseUs />
       <Features />
       <Services />
-      {/* <TestimonialCarausel /> */}
+      <TestimonialCarausel testimonials={testimonials} />
     </div>
   );
 };
 
+about.getInitialProps = async function () {
+  const res = await axios.get(process.env.ENDPOINT + "/api/testimonials");
+  const testimonials = res.data;
+  return { testimonials };
+};
 export default about;

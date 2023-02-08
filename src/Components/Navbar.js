@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <>
       <Center display={["none", "none", "flex"]} bg="teal.900" p="2" gap="2">
-        <Text color={"white"}>Get scholorship worth</Text>
+        <Text color={"white"}>Get Scholarship </Text>
         <Button
           variant={"outline"}
           colorScheme={"gray"}
