@@ -16,6 +16,7 @@ import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
 import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import UserActions from "@/State/Actions/UserActions";
+import PhoneInputUi from "./PhoneInputUi";
 
 const LoginDrawer = (props) => {
   const GoogleAuth = new GoogleAuthProvider();
@@ -78,6 +79,7 @@ const LoginDrawer = (props) => {
                 >
                   Continue with facebook
                 </Button>
+                <PhoneInputUi />
               </Stack>
             </DrawerBody>
           </Box>

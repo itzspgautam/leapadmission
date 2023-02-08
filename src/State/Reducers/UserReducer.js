@@ -4,6 +4,7 @@ const initiState = {
   user: null,
   userError: null,
   userLoading: false,
+  otpStatus: null,
 };
 
 export const UserReducer = (state = initiState, action) => {
@@ -24,6 +25,27 @@ export const UserReducer = (state = initiState, action) => {
       };
 
     case UserActions.types.LOGIN_FAIL:
+      return {
+        ...state,
+        userLoading: false,
+        userError: action.payload,
+      };
+
+    case UserActions.types.OTP_SENT_REQUEST:
+      return {
+        ...state,
+        userLoading: true,
+        userError: null,
+      };
+
+    case UserActions.types.OTP_SENT_SUCCESS:
+      return {
+        ...state,
+        userLoading: false,
+        otpStatus: action.payload,
+      };
+
+    case UserActions.types.OTP_SENT_FAIL:
       return {
         ...state,
         userLoading: false,
