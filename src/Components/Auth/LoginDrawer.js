@@ -79,7 +79,7 @@ const LoginDrawer = (props) => {
                 >
                   Continue with facebook
                 </Button>
-                <PhoneInputUi />
+                {/* <PhoneInputUi /> */}
               </Stack>
             </DrawerBody>
           </Box>
