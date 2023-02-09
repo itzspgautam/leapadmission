@@ -1,6 +1,6 @@
 const DbConnect = require("../../../Config/dbConfig");
 const Testimonial = require("../../../Models/Testimonial");
-export default async (req, res) => {
+const testimonial = async (req, res) => {
   await DbConnect();
   switch (req.method) {
     case "POST":
@@ -36,3 +36,5 @@ export default async (req, res) => {
       }
   }
 };
+
+export default testimonial;

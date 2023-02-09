@@ -1,6 +1,6 @@
 import User from "@/Models/User";
 
-export default async function (req, res) {
+export default register = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { providerData, uid } = req.body;
@@ -25,4 +25,4 @@ export default async function (req, res) {
       return res.status(500).json({ message: "Error creating user" });
     }
   }
-}
+};
