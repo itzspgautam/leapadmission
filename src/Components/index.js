@@ -9,6 +9,7 @@ import Services from "./Services";
 import WhyChooseUs from "./WhyChooseUs";
 import LoginDrawer from "./Auth/LoginDrawer";
 import PhoneInputUi from "./Auth/PhoneInputUi";
+import OtpInputUi from "./Auth/OtpInputUi";
 export {
   Layout,
   NavDrawer,
@@ -20,4 +21,6 @@ export {
   Services,
   WhyChooseUs,
   LoginDrawer,
+  PhoneInputUi,
+  OtpInputUi,
 };
