@@ -14,24 +14,10 @@ const PhoneInputUi = () => {
   const [phone, setPhone] = useState("");
   const Dispatch = useDispatch();
 
-  const { loading, error } = useSelector((state) => state.User);
-  const toast = useToast();
-  useEffect(() => {
-    if (!error) {
-      return;
-    }
-    toast({
-      title: "Error",
-      description: error,
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-      position: "top",
-    });
-    Dispatch(clearErrors());
-  }, [error, Dispatch, toast]);
+  const { userLoading, userError } = useSelector((state) => state.User);
 
   useEffect(() => {
+    if (window.recaptchaVerifier) return;
     generateRecaptcha();
   }, []);
 
@@ -53,7 +39,6 @@ const PhoneInputUi = () => {
 
   return (
     <>
-      <Box id="recaptcha-container" w="100%"></Box>
       <Box
         p="2"
         display={"flex"}
@@ -69,8 +54,18 @@ const PhoneInputUi = () => {
             Enter your phone number to continue.
           </Text>
 
+          <Text
+            fontSize={"13px"}
+            color="red"
+            fontWeight={"semibold"}
+            mt="1"
+            mb="3"
+          >
+            {userError}
+          </Text>
+
           <PhoneInput
-            disabled={loading ? true : false}
+            disabled={userLoading}
             inputProps={{
               required: true,
               autoFocus: true,
@@ -112,7 +107,7 @@ const PhoneInputUi = () => {
             onClick={() => {
               phoneNumberSubmitHandler();
             }}
-            isLoading={loading ? true : false}
+            isLoading={userLoading}
             size={"md"}
             colorScheme="yellow"
             loadingText="Loading"
@@ -122,10 +117,11 @@ const PhoneInputUi = () => {
             mt="10"
             mb="5"
           >
-            &nbsp;Request OTP
+            &nbsp;Continue
           </Button>
         </Box>
       </Box>
+      <Box id="recaptcha-container" w="100%"></Box>
     </>
   );
 };

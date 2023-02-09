@@ -24,10 +24,11 @@ const socialLogin = (provider) => async (dispatch) => {
   try {
     const { user } = await signInWithPopup(FirebaseAuth, provider);
 
-    setUser(user.accessToken, JSON.stringify(user.providerData[0]));
+    const data = await saveUser(user);
+    setUser(user.accessToken, JSON.stringify(data.user.providerData[0]));
     dispatch({
       type: types.LOGIN_SUCCESS,
-      payload: user.providerData[0],
+      payload: data.user.providerData[0],
     });
   } catch (error) {
     var message =
@@ -43,24 +44,28 @@ const socialLogin = (provider) => async (dispatch) => {
 
 const sendOtp = (appVerifier, phone) => async (dispatch) => {
   dispatch({ type: types.OTP_SENT_REQUEST });
-  console.log(phone);
+
   if (phone.length < 10) {
     dispatch({
       type: types.OTP_SENT_FAIL,
-      payload: { error: "Please enter valid phone number." },
+      payload: "Please enter valid phone number.",
     });
     return;
   }
   try {
-    const phoneOtpRequest = await signInWithPhoneNumber(
+    const confirmationResult = await signInWithPhoneNumber(
       FirebaseAuth,
       "+" + phone,
       appVerifier
     );
+
+    console.log(confirmationResult);
     dispatch({
       type: types.OTP_SENT_SUCCESS,
-      payload: phoneOtpRequest,
+      payload: { confirmationResult, status: "sent", phone: "+" + phone },
     });
+
+    return;
   } catch (error) {
     console.log(error);
     let message = "";
@@ -71,7 +76,47 @@ const sendOtp = (appVerifier, phone) => async (dispatch) => {
       message = "Too many attempts. Please try again later.";
     }
 
-    dispatch({ type: types.OTP_SENT_FAIL, payload: error });
+    dispatch({ type: types.OTP_SENT_FAIL, payload: message });
+  }
+};
+
+const verifyOtp = (confirmationResult, enetredOtp) => async (dispatch) => {
+  dispatch({
+    type: types.LOGIN_REQUEST,
+  });
+  try {
+    const { user } = await confirmationResult.confirm(enetredOtp);
+
+    const data = await saveUser(user);
+    setUser(user.accessToken, JSON.stringify(data.user.providerData[0]));
+    dispatch({
+      type: types.LOGIN_SUCCESS,
+      payload: data.user.providerData[0],
+    });
+  } catch (error) {
+    console.log(error);
+    let message = "";
+    if (error.code === "auth/invalid-verification-code") {
+      message = "Incorrect OTP. Please try again.";
+    }
+    dispatch({
+      type: types.LOGIN_FAIL,
+      payload: error,
+    });
+  }
+};
+const saveUser = async (user) => {
+  try {
+    const { data } = await axios.post(
+      process.env.ENDPOINT + "/api/auth/register",
+      {
+        providerData: user.providerData[0],
+        uid: user.uid,
+      }
+    );
+    return data;
+  } catch (error) {
+    return error?.response?.data?.message;
   }
 };
 
@@ -79,5 +124,5 @@ const logout = () => async (dispatch) => {
   dispatch({ type: types.LOGOUT_REQUEST });
   localStorage.clear();
 };
-const UserActions = { socialLogin, logout, sendOtp, types };
+const UserActions = { socialLogin, logout, sendOtp, verifyOtp, types };
 export default UserActions;

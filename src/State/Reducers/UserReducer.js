@@ -2,9 +2,9 @@ import UserActions from "../Actions/UserActions";
 
 const initiState = {
   user: null,
-  userError: null,
+  userError: "",
   userLoading: false,
-  otpStatus: null,
+  phoneAuth: null,
 };
 
 export const UserReducer = (state = initiState, action) => {
@@ -13,7 +13,7 @@ export const UserReducer = (state = initiState, action) => {
       return {
         ...state,
         userLoading: true,
-        userError: null,
+        userError: "",
       };
 
     case UserActions.types.LOGIN_SUCCESS:
@@ -21,7 +21,8 @@ export const UserReducer = (state = initiState, action) => {
         ...state,
         userLoading: false,
         user: action.payload,
-        userError: null,
+        userError: "",
+        phoneAuth: null,
       };
 
     case UserActions.types.LOGIN_FAIL:
@@ -35,14 +36,14 @@ export const UserReducer = (state = initiState, action) => {
       return {
         ...state,
         userLoading: true,
-        userError: null,
+        userError: "",
       };
 
     case UserActions.types.OTP_SENT_SUCCESS:
       return {
         ...state,
         userLoading: false,
-        otpStatus: action.payload,
+        phoneAuth: action.payload,
       };
 
     case UserActions.types.OTP_SENT_FAIL:
