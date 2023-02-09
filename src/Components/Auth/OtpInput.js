@@ -13,7 +13,7 @@ import "react-phone-input-2/lib/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import UserActions from "@/State/Actions/UserActions";
 
-const OtpInputUi = () => {
+const OtpInput = () => {
   const dispatch = useDispatch();
 
   const [inputOtp1, setInputOtp1] = useState("");
@@ -114,4 +114,4 @@ const OtpInputUi = () => {
   );
 };
 
-export default OtpInputUi;
+export default OtpInput;

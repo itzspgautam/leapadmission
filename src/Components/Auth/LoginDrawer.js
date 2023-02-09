@@ -17,7 +17,7 @@ import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import UserActions from "@/State/Actions/UserActions";
 import PhoneInputUi from "./PhoneInputUi";
-import OtpInputUi from "./OtpInputUi";
+import OtpInput from "./OtpInput";
 import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const LoginDrawer = (props) => {
@@ -62,7 +62,7 @@ const LoginDrawer = (props) => {
           <Box bg="white" borderTopRadius={"xl"} borderBottomRadius={[0, "xl"]}>
             <DrawerBody mt="10" pb="10" px="5">
               {phoneAuth?.status === "sent" ? (
-                <OtpInputUi />
+                <OtpInput />
               ) : (
                 <>
                   <PhoneInputUi />
