@@ -1,6 +1,6 @@
 import User from "@/Models/User";
 
-export default register = async (req, res) => {
+const register = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { providerData, uid } = req.body;
@@ -21,8 +21,8 @@ export default register = async (req, res) => {
       const savedUser = await user.save();
       return res.json({ user: savedUser });
     } catch (err) {
-      console.error(err);
       return res.status(500).json({ message: "Error creating user" });
     }
   }
 };
+export default register;

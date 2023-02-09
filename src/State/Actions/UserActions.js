@@ -59,7 +59,6 @@ const sendOtp = (appVerifier, phone) => async (dispatch) => {
       appVerifier
     );
 
-    console.log(confirmationResult);
     dispatch({
       type: types.OTP_SENT_SUCCESS,
       payload: { confirmationResult, status: "sent", phone: "+" + phone },
@@ -67,8 +66,7 @@ const sendOtp = (appVerifier, phone) => async (dispatch) => {
 
     return;
   } catch (error) {
-    console.log(error);
-    let message = "";
+    let message = "Something went wrong";
     if (error.code === "auth/invalid-phone-number") {
       message = "Please enter valid phone number";
     }
@@ -86,7 +84,6 @@ const verifyOtp = (confirmationResult, enetredOtp) => async (dispatch) => {
   });
   try {
     const { user } = await confirmationResult.confirm(enetredOtp);
-
     const data = await saveUser(user);
     setUser(user.accessToken, JSON.stringify(data.user.providerData[0]));
     dispatch({
@@ -94,7 +91,6 @@ const verifyOtp = (confirmationResult, enetredOtp) => async (dispatch) => {
       payload: data.user.providerData[0],
     });
   } catch (error) {
-    console.log(error);
     let message = "";
     if (error.code === "auth/invalid-verification-code") {
       message = "Incorrect OTP. Please try again.";
