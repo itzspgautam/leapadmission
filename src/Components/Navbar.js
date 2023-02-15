@@ -36,6 +36,7 @@ import NavDrawer from "./Drawer";
 
 const NavPages = [
   { _id: 1, title: "Home", link: "/", icon: <AiOutlineHome /> },
+
   {
     _id: 2,
     title: "Test Prep",
@@ -84,8 +85,10 @@ const NavPages = [
       },
     ],
   },
-  { _id: 3, title: "About Us", link: "/about", icon: <AiOutlineInfo /> },
-  { _id: 4, title: "Contacts", link: "/contacts", icon: <AiOutlinePhone /> },
+  // { _id: 3, title: "Mentors", link: "/mentor", icon: <AiOutlineInfo /> },
+
+  { _id: 4, title: "About Us", link: "/about", icon: <AiOutlineInfo /> },
+  { _id: 5, title: "Contacts", link: "/contacts", icon: <AiOutlinePhone /> },
 ];
 
 const ChildrenList = ({ page }) => {
@@ -155,13 +158,13 @@ const Navbar = () => {
   };
   return (
     <>
-      <Center display={["none", "none", "flex"]} bg="teal.900" p="2" gap="2">
+      <Center display={["none", "none", "flex"]} bg="blue.900" p="2" gap="2">
         <Text color={"white"}>Get Scholarship </Text>
         <Button
           variant={"outline"}
           colorScheme={"gray"}
           color={"white"}
-          _hover={{ color: "teal" }}
+          _hover={{ color: "blue.800", bg: "white" }}
           size="sm"
         >
           Learn More

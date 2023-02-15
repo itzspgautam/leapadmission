@@ -12,8 +12,8 @@ const Whatsapp = () => {
         h="12"
         w="12"
         position={"fixed"}
-        bottom="10"
-        right="10"
+        bottom={["5", "10"]}
+        right={["5", "10"]}
         zIndex={10}
       >
         <FaWhatsapp size="35" />

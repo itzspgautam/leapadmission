@@ -37,7 +37,6 @@ const UniversityCarausel = () => {
       flexDir={"column"}
       justifyContent="center"
       h={["15vh", "15vh", "30vh"]}
-      bg="gray.100"
     >
       <Carousel
         additionalTransfrom={0}
@@ -60,6 +59,8 @@ const UniversityCarausel = () => {
             <Center
               h={"50px"}
               bg="white"
+              border="1px"
+              borderColor="blackAlpha.300"
               overflow={"hidden"}
               borderRadius={["md", "lg"]}
               p="4"

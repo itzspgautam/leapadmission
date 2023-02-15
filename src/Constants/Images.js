@@ -14,4 +14,6 @@ export const Images = {
   MISSION_VISSION_BG: require("../Assets/Images/vision-mission-bg.jpg"),
 
   CONTACT_GIRL: require("../Assets/Images/contact.png"),
+
+  CALLBACK_ART: require("../Assets/Images/callback.png"),
 };

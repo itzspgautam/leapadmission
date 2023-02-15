@@ -20,7 +20,7 @@ import React from "react";
 
 const Prep = ({ prep }) => {
   return (
-    <Box pt="10" p="5" bg="gray.200">
+    <Box pt="10" p={[2, 4, 5]} bg="gray.200">
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]}
         gap={6}
@@ -37,7 +37,7 @@ const Prep = ({ prep }) => {
         </GridItem>
         <GridItem w="100%" bg="white" borderRadius={"lg"} p="4">
           <Box>
-            <Heading color={"gray.900"} as="h1" fontSize={35}>
+            <Heading color={"gray.900"} as="h1" fontSize={[24, 28, 35]}>
               {prep.title}
             </Heading>
           </Box>
@@ -60,16 +60,16 @@ const Prep = ({ prep }) => {
                         t.time
                       }s`}
                     >
-                      <Button
+                      <Box
                         w="100%"
-                        variant={"outline"}
+                        p="2"
+                        border={"2px"}
+                        borderColor="teal"
                         _hover={{ bg: "teal", color: "white" }}
-                        justifyContent={"flex-start"}
-                        colorScheme={"teal"}
                         borderRadius="sm"
                       >
                         {t.title}
-                      </Button>
+                      </Box>
                     </Link>
                   ))}
                 </Flex>

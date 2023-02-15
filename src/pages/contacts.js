@@ -1,4 +1,4 @@
-import { TestimonialCarausel } from "@/Components";
+import { AppConfig } from "@/Config/AppConfig";
 import { Images } from "@/Constants";
 import {
   Box,
@@ -14,9 +14,10 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import {
   AiOutlineFacebook,
   AiOutlineInstagram,
@@ -27,9 +28,50 @@ import {
   AiOutlineWhatsApp,
   AiOutlineYoutube,
 } from "react-icons/ai";
-import { FaPhone, FaUser } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaEnvelope,
+  FaExclamationTriangle,
+  FaPhone,
+  FaUser,
+} from "react-icons/fa";
 
-const contacts = () => {
+const Contacts = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [status, setStatus] = useState(null);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    const { name, email, phone, message } = e.target;
+    const callBackData = {
+      name: name.value,
+      email: email.value,
+      phone: phone.value,
+      message: message.value,
+    };
+
+    try {
+      const { data } = await axios.post(
+        `${AppConfig.API_ENDPOINT}/contact`,
+        callBackData
+      );
+      console.log(data);
+      setIsLoading(false);
+      setStatus("success");
+    } catch (error) {
+      console.log(error);
+      setError(
+        <>
+          <FaExclamationTriangle /> {error?.response?.data?.error}
+        </>
+      );
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Box>
       <Head>
@@ -45,7 +87,7 @@ const contacts = () => {
       </Head>
       <Flex flexDir={["column", "column", "row"]}>
         <Flex
-          bg="teal.400"
+          bg="blue.400"
           flex="1"
           px="5"
           pt="16"
@@ -114,39 +156,82 @@ const contacts = () => {
           justifyContent={"center"}
           alignItems="center"
         >
-          <Stack spacing={4} w={["100%", "100%", "60%"]} p="10">
-            <Text
-              align={"center"}
-              maxW={["100vw", "70vw", "40vw"]}
-              as="h3"
-              color="teal.900"
-              fontSize={[20, 24, 18]}
-              fontWeight={"bold"}
-            >
-              Contact Us
-            </Text>
-
-            <InputGroup background={"white"}>
-              <InputLeftElement pointerEvents="none">
-                <FaUser color="gray.300" />
-              </InputLeftElement>
-              <Input type="tel" placeholder="Full Name" />
-            </InputGroup>
-            <InputGroup background={"white"}>
-              <InputLeftElement pointerEvents="none">
-                <FaPhone color="gray.300" />
-              </InputLeftElement>
-              <Input type="tel" placeholder="Phone Number" />
-            </InputGroup>
-            <InputGroup background={"white"}>
-              <Textarea type="tel" placeholder="Massage" />
-            </InputGroup>
-            <Center justifyContent={"flex-end"}>
-              <Button w="40%" colorScheme={"teal"}>
-                Submit
-              </Button>
-            </Center>
-          </Stack>
+          {status === "success" ? (
+            <Stack bg="white" p="5" borderRadius={"xl"} alignItems="center">
+              <FaCheckCircle color="green" size="100" />
+              <Text
+                textAlign={"center"}
+                fontSize={28}
+                fontWeight="bold"
+                color="green.600"
+              >
+                Submitted Successfully !
+              </Text>
+              <Text
+                textAlign={"center"}
+                maxW={["100%", "80%"]}
+                color="blackAlpha.700"
+              >
+                Thanks for contacting us! We have received your message and will
+                get back to you soon.
+              </Text>
+            </Stack>
+          ) : (
+            <form onSubmit={(e) => submitForm(e)} style={{ width: "100%" }}>
+              <Stack spacing={4} justifyContent={"space-evenly"} h="100%" p="4">
+                <Text
+                  align={"center"}
+                  maxW={["100vw", "70vw", "40vw"]}
+                  as="h3"
+                  color="blue.900"
+                  fontSize={[24, 28, 32]}
+                  fontWeight={"bold"}
+                  display={{ base: "none", lg: "block" }}
+                >
+                  Contact Us
+                </Text>
+                <Flex color="red" fontSize={[14]} alignItems="center" gap="1">
+                  {" "}
+                  {error}
+                </Flex>
+                <InputGroup background={"white"}>
+                  <InputLeftElement pointerEvents="none" color="blue.700">
+                    <FaUser />
+                  </InputLeftElement>
+                  <Input type="tel" placeholder="Full Name" name="name" />
+                </InputGroup>
+                <InputGroup background={"white"}>
+                  <InputLeftElement pointerEvents="none" color="blue.700">
+                    <FaPhone />
+                  </InputLeftElement>
+                  <Input type="tel" placeholder="Phone Number" name="phone" />
+                </InputGroup>
+                <InputGroup background={"white"}>
+                  <InputLeftElement pointerEvents="none" color="blue.700">
+                    <FaEnvelope />
+                  </InputLeftElement>
+                  <Input type="tel" placeholder="Email address" name="email" />
+                </InputGroup>
+                <InputGroup background={"white"}>
+                  <Textarea
+                    type="tel"
+                    placeholder="Massage (Optional)"
+                    name="message"
+                  />
+                </InputGroup>
+                <Center justifyContent={"flex-end"}>
+                  <Button
+                    isLoading={isLoading}
+                    type="submit"
+                    w="40%"
+                    colorScheme={"green"}
+                  >
+                    Submit
+                  </Button>
+                </Center>
+              </Stack>
+            </form>
+          )}
         </Flex>
       </Flex>
 
@@ -237,4 +322,4 @@ const contacts = () => {
   );
 };
 
-export default contacts;
+export default Contacts;

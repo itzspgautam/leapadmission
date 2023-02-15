@@ -7,6 +7,7 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { MdPhone } from "react-icons/md";
 const Hero = () => {
@@ -32,7 +33,7 @@ const Hero = () => {
         </AspectRatio>
       )}
       <Box
-        bg="redy"
+        bg="rgba(66,153,225,.4)"
         pos="absolute"
         h="100%"
         w="100%"
@@ -55,23 +56,26 @@ const Hero = () => {
           pt={[12, 0, "15vh"]}
           pl={[3, 10, "100px"]}
         >
-          <Heading fontSize={[30, 34, 50]} fontWeight={900} color="teal.900">
+          <Heading fontSize={[30, 34, 50]} fontWeight={900} color="blue.800">
             Chase Your Dream
-            <br /> <span style={{ color: "#319795" }}>With Us</span>
+            <br /> <span style={{ color: "#4299E1" }}>With Us</span>
           </Heading>
           <Text fontSize={[16, 16, 24]} color={"gray.500"}>
             Apply to your Dream universities, with our expert guidance and
             support from accomplished alumni and current students.
           </Text>
           <Flex gap="2" justifyContent={["center", "left"]} mt="2">
-            <Button
-              fontWeight={"regular"}
-              colorScheme={"teal"}
-              size={["md", "md", "lg"]}
-              borderRadius="sm"
-            >
-              <MdPhone size={"18"} /> Contact us
-            </Button>
+            <Link href={"#callback"}>
+              <Button
+                fontWeight={"regular"}
+                colorScheme={"blue"}
+                size={["md", "md", "lg"]}
+                borderRadius="sm"
+              >
+                <MdPhone size={"18"} />
+                &nbsp; Request Call Back
+              </Button>
+            </Link>
             <Button
               fontWeight={"regular"}
               colorScheme={"teal"}
@@ -81,7 +85,7 @@ const Hero = () => {
               borderRadius="sm"
               _hover={{ background: "teal", color: "white" }}
             >
-              Our Services
+              Our Mentors
             </Button>
           </Flex>
         </Flex>

@@ -15,7 +15,7 @@ const TestimonialCarausel = ({ testimonials }) => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 2,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -32,7 +32,7 @@ const TestimonialCarausel = ({ testimonials }) => {
       display={"flex"}
       flexDir={"column"}
       justifyContent="center"
-      bg="teal.100"
+      bg="blackAlpha.900"
       gap={[5, 5, 8]}
       py="16"
       px={[0, 0, 20]}
@@ -41,7 +41,7 @@ const TestimonialCarausel = ({ testimonials }) => {
         as={"h2"}
         fontSize={[22, 24, 30]}
         fontWeight={"bold"}
-        color="teal.900"
+        color="whiteAlpha.800"
         lineHeight={"1"}
         textAlign="center"
       >
@@ -63,59 +63,35 @@ const TestimonialCarausel = ({ testimonials }) => {
         swipeable
       >
         {testimonials?.testimonials?.map((tsm) => (
-          <Box p="4" key={tsm._id}>
-            <Center
-              borderRadius={["md", "lg"]}
+          <Box p="4" key={tsm._id} h={["40vh"]}>
+            <Flex
+              justifyContent={"space-between"}
+              flexDir="column"
+              bg="whiteAlpha.300"
               p="4"
-              bg="white"
-              mt="10"
-              flexDir={"column"}
-              justifyContent="flex-start"
-              alignItems="left"
               h="full"
+              borderRadius={"lg"}
             >
-              {/* <Avatar name={tsm.author} /> */}
-              <Flex>
-                <Avatar
-                  name={tsm.author}
-                  src={
-                    tsm.avatarURL
-                      ? tsm.avatarURL
-                      : Images.USER_DEFAULT.default.src
-                  }
-                  border="4px solid white"
-                  marginTop="-40px"
-                  size={"xl"}
-                />
-
+              <Text fontSize={"13"} textColor="whiteAlpha.800" noOfLines={7}>
+                <span dangerouslySetInnerHTML={{ __html: tsm.message }} />
+              </Text>
+              <Flex
+                gap="2"
+                borderTopWidth={"2px"}
+                pt="4"
+                borderColor={"whiteAlpha.200"}
+              >
+                <Avatar src={tsm.avatarURL} alt={tsm.author} border="2px" />
                 <Box>
-                  <Text
-                    fontWeight={"bold"}
-                    fontSize="18"
-                    color={"teal.800"}
-                    lineHeight="1"
-                  >
+                  <Text fontSize={"16"} textColor="whiteAlpha.800">
                     {tsm.author}
                   </Text>
-                  <Text fontWeight={"medium"} fontSize="12" color={"teal.600"}>
+                  <Text fontSize={"10"} textColor="whiteAlpha.600">
                     {tsm.description}
                   </Text>
                 </Box>
               </Flex>
-              <Text
-                fontSize={"14"}
-                fontWeight="light"
-                px="3"
-                py="2"
-                color={"gray.500"}
-                textAlign="justify"
-              >
-                <span dangerouslySetInnerHTML={{ __html: tsm.message }} />
-              </Text>
-              <Flex w="100%" justifyContent={"flex-end"} color={"gray.400"}>
-                <FaQuoteRight />
-              </Flex>
-            </Center>
+            </Flex>
           </Box>
         ))}
       </Carousel>

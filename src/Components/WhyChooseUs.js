@@ -30,10 +30,9 @@ const WhyChooseUs = () => {
     },
     {
       _id: "3",
-      title:
-        "Get Insights from the Students and Alumni from the Same Universities",
+      title: "Get Insights from the Students and Alumni.",
       image: Images.WCU_SUPPORT,
-      color: "teal",
+      color: "blue",
       icon: <BiBook size="30" />,
     },
     {
@@ -57,10 +56,10 @@ const WhyChooseUs = () => {
         as={"h2"}
         fontSize={[22, 24, 30]}
         fontWeight={"bold"}
-        color="teal.900"
+        color="blue.900"
         lineHeight={"1"}
       >
-        Why Choose <span style={{ color: "#319795" }}>Us</span>
+        Why Choose Us
       </Text>
       <Grid
         w={["100%", "80%", "70%"]}
@@ -70,7 +69,6 @@ const WhyChooseUs = () => {
         {WhyChooseUs.map((item) => (
           <GridItem key={item._id}>
             <Center
-              bg="white"
               flexDir={"column"}
               gap="4"
               bgColor={"gray.50"}
@@ -79,7 +77,7 @@ const WhyChooseUs = () => {
               borderRadius={"md"}
               h="100%"
               justifyContent={"space-evenly"}
-              _hover={{ boxShadow: "lg", bg: "teal.50" }}
+              _hover={{ boxShadow: "lg", bg: "blue.300" }}
             >
               <Center
                 bg={`${item.color}.100`}
@@ -94,7 +92,7 @@ const WhyChooseUs = () => {
                 fontSize={[14, 16, 16]}
                 fontWeight="semibold"
                 lineHeight={1.3}
-                color="teal.900"
+                color="blue.900"
               >
                 {item.title}
               </Text>

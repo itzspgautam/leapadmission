@@ -1,4 +1,5 @@
 import {
+  CallBack,
   Features,
   Hero,
   Services,
@@ -27,6 +28,7 @@ const index = ({ testimonials }) => {
       </Head>
       <Hero />
       <UniversityCarausel />
+      <CallBack />
       <WhyChooseUs />
       <Features />
       <Services />
