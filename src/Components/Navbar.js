@@ -4,11 +4,15 @@ import {
   Avatar,
   Button,
   Center,
-  ListItem,
+  Flex,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Stack,
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
@@ -16,7 +20,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { AiOutlineHome, AiOutlineInfo, AiOutlinePhone } from "react-icons/ai";
+import {
+  AiOutlineHome,
+  AiOutlineInfo,
+  AiOutlinePhone,
+  AiOutlineTable,
+  AiOutlineYoutube,
+} from "react-icons/ai";
+import { FaChevronDown } from "react-icons/fa";
 import { RiPhoneFill, RiSearch2Line } from "react-icons/ri";
 import { TbAlignLeft } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,9 +36,115 @@ import NavDrawer from "./Drawer";
 
 const NavPages = [
   { _id: 1, title: "Home", link: "/", icon: <AiOutlineHome /> },
-  { _id: 2, title: "About Us", link: "/about", icon: <AiOutlineInfo /> },
-  { _id: 3, title: "Contacts", link: "/contacts", icon: <AiOutlinePhone /> },
+  {
+    _id: 2,
+    title: "Test Prep",
+    link: "/preps",
+    icon: <AiOutlineTable />,
+    hasChildren: true,
+    children: [
+      {
+        _id: "2_1",
+        title: "IELTS",
+        link: "/preps/63ec1441b56829f963751950",
+        icon: <AiOutlineYoutube />,
+        hasChildren: true,
+        children: [
+          {
+            _id: "2_1_1",
+            title: "Listening",
+            link: "/preps/63ec1441b56829f963751950",
+            icon: <AiOutlineYoutube />,
+          },
+          {
+            _id: "2_1_2",
+            title: "Reading",
+            link: "/preps/63ec1441b56829f963751950",
+            icon: <AiOutlineYoutube />,
+          },
+          {
+            _id: "2_1_3",
+            title: "Writing",
+            link: "/preps/63ec1441b56829f963751950",
+            icon: <AiOutlineYoutube />,
+          },
+          {
+            _id: "2_1_4",
+            title: "Speaking",
+            link: "/preps/63ec1441b56829f963751950",
+            icon: <AiOutlineYoutube />,
+          },
+          {
+            _id: "2_1_5",
+            title: "Grammer",
+            link: "/preps/63ec1441b56829f963751950",
+            icon: <AiOutlineYoutube />,
+          },
+        ],
+      },
+    ],
+  },
+  { _id: 3, title: "About Us", link: "/about", icon: <AiOutlineInfo /> },
+  { _id: 4, title: "Contacts", link: "/contacts", icon: <AiOutlinePhone /> },
 ];
+
+const ChildrenList = ({ page }) => {
+  const router = useRouter();
+
+  return (
+    <Popover trigger={"hover"} placement={"bottom-start"}>
+      {page.hasChildren ? (
+        <>
+          <PopoverTrigger>
+            <Link href={page.link} style={{ width: "100%" }}>
+              <Text
+                color={router.asPath === page.link ? "teal" : "teal.900"}
+                fontWeight={router.asPath === page.link ? "semibold" : ""}
+              >
+                {page.title}
+              </Text>
+            </Link>
+          </PopoverTrigger>
+          <PopoverContent
+            border={0}
+            boxShadow={"xl"}
+            p={4}
+            rounded={"sm"}
+            w={"250px"}
+            bg="teal.50"
+          >
+            <Stack listStyleType={"none"} w="100%" justifyContent={"flex-end"}>
+              {page?.children?.map((page) => (
+                <Link href={page.link} key={page._id}>
+                  <Flex
+                    _hover={{ bg: "teal.100" }}
+                    p="2"
+                    borderRadius={"md"}
+                    px="2"
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                  >
+                    <ChildrenList page={page} />
+                    {page.hasChildren && <FaChevronDown size="12" />}
+                  </Flex>
+                </Link>
+              ))}
+            </Stack>
+          </PopoverContent>
+        </>
+      ) : (
+        <Link href={page.link}>
+          <Text
+            color={router.asPath === page.link ? "teal" : "teal.900"}
+            fontWeight={router.asPath === page.link ? "semibold" : ""}
+          >
+            {page.title}
+          </Text>
+        </Link>
+      )}
+    </Popover>
+  );
+};
 
 const Navbar = () => {
   const router = useRouter();
@@ -76,12 +193,7 @@ const Navbar = () => {
         >
           {NavPages.map((page) => (
             <Link href={page.link} key={page._id}>
-              <ListItem
-                color={router.pathname === page.link ? "teal" : "teal.900"}
-                fontWeight={router.pathname === page.link ? "semibold" : ""}
-              >
-                {page.title}
-              </ListItem>
+              <ChildrenList page={page} />
             </Link>
           ))}
         </UnorderedList>
@@ -166,7 +278,6 @@ const Navbar = () => {
                 />
               </MenuButton>
               <MenuList>
-                {/* <MenuItem>Profile</MenuItem> */}
                 <MenuItem onClick={logout}>Logout</MenuItem>
               </MenuList>
             </Menu>

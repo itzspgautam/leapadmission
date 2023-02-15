@@ -15,6 +15,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import Link from "next/link";
 import React from "react";
 import {
   AiOutlineFacebook,
@@ -91,7 +92,7 @@ const contacts = () => {
                   <AiOutlinePhone size={20} />
                 </Center>
                 <Text color={"white"} fontSize="14">
-                  +1 123 456 7890
+                  +1-860-209-8792
                 </Text>
               </Flex>
 
@@ -100,7 +101,7 @@ const contacts = () => {
                   <AiOutlineWhatsApp size={20} />
                 </Center>
                 <Text color={"white"} fontSize="14">
-                  +1 123 456 7890
+                  +1 732-861-6559
                 </Text>
               </Flex>
             </Stack>
@@ -161,60 +162,75 @@ const contacts = () => {
           Follow us on
         </Text>
         <Center gap={5}>
-          <IconButton
-            colorScheme={"facebook"}
-            size="lg"
-            h="16"
-            w="16"
-            rounded={"sm"}
+          <Link href="https://facebook.com/leapadmission" target="_blank">
+            <IconButton
+              colorScheme={"facebook"}
+              size="lg"
+              h="16"
+              w="16"
+              rounded={"sm"}
+            >
+              <AiOutlineFacebook size={40} />
+            </IconButton>
+          </Link>
+          <Link href="https://instagram.com/leapadmission" target="_blank">
+            <IconButton
+              colorScheme={"purple"}
+              size="lg"
+              h="16"
+              w="16"
+              rounded={"sm"}
+            >
+              <AiOutlineInstagram size={40} />
+            </IconButton>
+          </Link>
+          <Link href="https://twitter.com/leapadmission" target="_blank">
+            <IconButton
+              colorScheme={"twitter"}
+              size="lg"
+              h="16"
+              w="16"
+              rounded={"sm"}
+            >
+              <AiOutlineTwitter size={40} />
+            </IconButton>
+          </Link>
+          <Link href="https://youtube.com/leapadmission" target="_blank">
+            <IconButton
+              colorScheme={"red"}
+              size="lg"
+              h="16"
+              w="16"
+              rounded={"sm"}
+            >
+              <AiOutlineYoutube size={40} />
+            </IconButton>
+          </Link>
+          <Link href="https://wa.me/+17328616559" target="_blank">
+            <IconButton
+              colorScheme={"whatsapp"}
+              size="lg"
+              h="16"
+              w="16"
+              rounded={"sm"}
+            >
+              <AiOutlineWhatsApp size={40} />
+            </IconButton>
+          </Link>
+          <Link
+            href="https://linkedin.com/company/leapadmission"
+            target="_blank"
           >
-            <AiOutlineFacebook size={40} />
-          </IconButton>
-          <IconButton
-            colorScheme={"purple"}
-            size="lg"
-            h="16"
-            w="16"
-            rounded={"sm"}
-          >
-            <AiOutlineInstagram size={40} />
-          </IconButton>
-          <IconButton
-            colorScheme={"twitter"}
-            size="lg"
-            h="16"
-            w="16"
-            rounded={"sm"}
-          >
-            <AiOutlineTwitter size={40} />
-          </IconButton>
-          <IconButton
-            colorScheme={"red"}
-            size="lg"
-            h="16"
-            w="16"
-            rounded={"sm"}
-          >
-            <AiOutlineYoutube size={40} />
-          </IconButton>{" "}
-          <IconButton
-            colorScheme={"whatsapp"}
-            size="lg"
-            h="16"
-            w="16"
-            rounded={"sm"}
-          >
-            <AiOutlineWhatsApp size={40} />
-          </IconButton>
-          <IconButton
-            colorScheme={"linkedin"}
-            size="lg"
-            h="16"
-            w="16"
-            rounded={"sm"}
-          >
-            <AiOutlineLinkedin size={40} />
-          </IconButton>
+            <IconButton
+              colorScheme={"linkedin"}
+              size="lg"
+              h="16"
+              w="16"
+              rounded={"sm"}
+            >
+              <AiOutlineLinkedin size={40} />
+            </IconButton>
+          </Link>
         </Center>
       </Box>
     </Box>
