@@ -198,23 +198,38 @@ const Contacts = () => {
                   <InputLeftElement pointerEvents="none" color="blue.700">
                     <FaUser />
                   </InputLeftElement>
-                  <Input type="tel" placeholder="Full Name" name="name" />
+                  <Input
+                    type="text"
+                    placeholder="Full Name"
+                    name="name"
+                    required
+                  />
                 </InputGroup>
                 <InputGroup background={"white"}>
                   <InputLeftElement pointerEvents="none" color="blue.700">
                     <FaPhone />
                   </InputLeftElement>
-                  <Input type="tel" placeholder="Phone Number" name="phone" />
+                  <Input
+                    type="tel"
+                    placeholder="Phone Number"
+                    name="phone"
+                    required
+                  />
                 </InputGroup>
                 <InputGroup background={"white"}>
                   <InputLeftElement pointerEvents="none" color="blue.700">
                     <FaEnvelope />
                   </InputLeftElement>
-                  <Input type="tel" placeholder="Email address" name="email" />
+                  <Input
+                    type="email"
+                    placeholder="Email address"
+                    name="email"
+                    required
+                  />
                 </InputGroup>
                 <InputGroup background={"white"}>
                   <Textarea
-                    type="tel"
+                    type="text"
                     placeholder="Massage (Optional)"
                     name="message"
                   />

@@ -31,9 +31,8 @@ import { FaChevronDown } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import LoginDrawer from "./Auth/LoginDrawer";
 
-const ChildrenListMobile = ({ page }) => {
+const ChildrenListMobile = ({ page, onClose }) => {
   const router = useRouter();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Accordion allowMultiple p="0">
@@ -66,13 +65,22 @@ const ChildrenListMobile = ({ page }) => {
 
             <AccordionPanel pb={4}>
               {page?.children?.map((page) => (
-                <ChildrenListMobile page={page} key={page._id} />
+                <ChildrenListMobile
+                  page={page}
+                  key={page._id}
+                  onClose={onClose}
+                />
               ))}
             </AccordionPanel>
           </AccordionItem>
         </>
       ) : (
-        <Link href={page.link} key={page._id} onClick={() => onClose()}>
+        <Link
+          href={page.link}
+          key={page._id}
+          onClick={() => onClose()}
+          bg="red"
+        >
           <Flex
             bg={router.pathname === page.link ? "teal.100" : "white"}
             p="2"
@@ -157,7 +165,11 @@ const NavDrawer = ({ children, pages, path }) => {
             )}
             <Stack spacing={2} mt="5" px="2">
               {pages.map((page) => (
-                <ChildrenListMobile page={page} key={page._id} />
+                <ChildrenListMobile
+                  page={page}
+                  key={page._id}
+                  onClose={onClose}
+                />
               ))}
             </Stack>
           </DrawerHeader>
