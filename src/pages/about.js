@@ -18,19 +18,35 @@ import { AiOutlineAim, AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Head from "next/head";
 const about = ({ testimonials }) => {
+  const title = "About Us - LeapAdmission";
+  const description =
+    "Learn more about LeapAdmission and our mission to help students apply to their dream universities with expert guidance and support from accomplished alumni and current students. Discover our free personalized counseling and courses today.";
+  const keywords =
+    "study abroad, personal guidance, free guidance, free counseling, free courses, apply to universities";
+  const url = "https://www.leapadmission.com/contacts";
+
+  const image = `${process.env.ENDPOINT}/home.jpg`;
+
   return (
     <div>
       <Head>
-        <title>About Us | LeapAdmission</title>
-        <meta
-          name="keywords"
-          content="about leap admission,leapAdmission information, study abroad, admission in usa, free admission in abroad"
-        />
-        <meta
-          name="description"
-          content="Our mission is to enabling every learner to study abroad by simplifying the process throughout their journey."
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={url} />
+        <meta property="og:image" content={image} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
       </Head>
+
       <Box
         h={["95vh", "90vh", "90vh"]}
         bgColor={"teal.50"}
@@ -120,31 +136,47 @@ const about = ({ testimonials }) => {
         </Heading>
 
         <Stack mt="5" spacing={4} fontWeight="light">
-          <Text>
-            Are you ready to go on a courageous, self-discovering, empowering
-            journey with LeapAdmission?
+          <Text fontSize="lg">
+            Welcome to LeapAdmission! Are you ready to go on a courageous,
+            self-discovering, empowering journey with LeapAdmission?
           </Text>
-          <Text>
-            Est reprehenderit voluptate sint cupidatat aute. Minim ut fugiat
-            aute consequat et irure exercitation reprehenderit Lorem sit dolore
-            aliqua ullamco. Consequat exercitation esse amet labore ipsum
-            voluptate laborum laborum commodo enim cupidatat aliquip aliqua.
-            Officia adipisicing tempor fugiat enim deserunt dolore incididunt
-            consequat culpa.
-          </Text>
-          <Text>
-            Aliquip sint consectetur consequat ea cupidatat amet sit nulla
-            eiusmod cillum nostrud magna labore. Mollit fugiat consequat sit
-            irure esse ipsum laboris do. Id minim velit duis nostrud cupidatat
-            velit id. Laboris officia do id Lorem anim reprehenderit ex commodo
-            dolor fugiat et. Labore pariatur consectetur laborum esse voluptate
-            nisi dolor occaecat duis qui ad mollit labore nulla. Proident minim
-            est eiusmod ea dolor consequat dolore nulla commodo proident irure.
-            Quis eiusmod deserunt nisi enim occaecat aliqua non. Ut adipisicing
-            reprehenderit eiusmod non deserunt sunt anim commodo laborum
-            voluptate. Proident incididunt laboris voluptate mollit pariatur.
-            Mollit officia nulla dolore esse. Commodo excepteur aute elit enim
-            sunt. Labore ullamco labore dolore dolore anim laborum eiusmod.
+          <Text fontWeight="normal">
+            We are a non-profit organization that provides free guidance and
+            support to students seeking to study abroad. Our mission is to help
+            every student achieve their full potential by providing them with
+            the resources and mentorship they need to pursue their education and
+            career goals on an international level.
+            <br />
+            We understand that the process of applying to study abroad programs
+            can be daunting and complex, which is why we are here to help. Our
+            team of experienced mentors and counselors are dedicated to
+            providing personalized guidance and support to each and every
+            student we work with.
+            <br />
+            At LeapAdmission, we believe that everyone deserves access to
+            international education, regardless of their background or financial
+            situation. That{"'"}s why all of our services are completely free of
+            charge. We rely on donations from generous individuals and
+            organizations to keep our services running and to ensure that we can
+            continue to help students for years to come.
+            <br />
+            Our approach is centered around the idea that every student is
+            unique and requires individualized attention. We work closely with
+            each student to assess their needs, interests, and goals, and then
+            match them with a mentor who can provide personalized guidance and
+            support throughout the entire application process.
+            <br />
+            We are committed to providing our students with a comprehensive and
+            holistic approach to studying abroad. We believe that a successful
+            study abroad experience is about more than just grades and test
+            scores. It{"'"}s about finding the right fit for each individual
+            student, both academically and personally.
+            <br />
+            At LeapAdmission, we are passionate about helping students realize
+            their full potential and achieve their dreams on an international
+            level. We are committed to providing free, high-quality guidance and
+            support to every student who seeks our help. Join us on this journey
+            and let us help you take the leap towards your future.
           </Text>
         </Stack>
       </Container>

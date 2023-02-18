@@ -105,18 +105,36 @@ const Contacts = () => {
     }
   };
 
+  const title = "Contact Us | LeapAdmission";
+  const description =
+    "Get in touch with LeapAdmission to apply to your dream universities. Our expert guidance and support from accomplished alumni and current students can help you get accepted. Contact us for free personalized guidance and counseling..";
+  const url = "https://www.leapadmission.com/contacts";
+  const image = `${process.env.ENDPOINT}/home.jpg`;
+
+  const keywords =
+    "Leapadmission Contact, study abroad, personal guidance, free guidance, free counseling, free courses, apply to universities";
+  const twitterHandle = "@LeapAdmission";
+
   return (
     <Box>
       <Head>
-        <title>Contacts | LeapAdmission</title>
-        <meta
-          name="keywords"
-          content="contacts leap admission,leapAdmission contacts, get in touch with leapAdmission,admission in abroad, admission in usa, free admission in abroad"
-        />
-        <meta
-          name="description"
-          content="Have a Question ? Need Some Help ? We are here for you Let’s Talk. Just Drop a Message For Us to Reach you.."
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+
+        <link rel="canonical" href={url} />
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content={twitterHandle} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
       </Head>
       <Flex flexDir={["column", "column", "row"]}>
         <Flex
