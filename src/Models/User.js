@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 let User;
 if (!mongoose.models.User) {
-  const providerDataSchema = new mongoose.Schema({
+  const userSchema = new mongoose.Schema({
     displayName: {
       type: String,
     },
@@ -18,14 +18,9 @@ if (!mongoose.models.User) {
       type: String,
       required: true,
     },
-  });
-
-  const userSchema = new mongoose.Schema({
-    providerData: [providerDataSchema],
     uid: {
       type: String,
       required: true,
-      unique: true,
     },
   });
 

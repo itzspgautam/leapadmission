@@ -25,10 +25,10 @@ const socialLogin = (provider) => async (dispatch) => {
     const { user } = await signInWithPopup(FirebaseAuth, provider);
 
     const data = await saveUser(user);
-    setUser(user.accessToken, JSON.stringify(data.user.providerData[0]));
+    setUser(user.accessToken, JSON.stringify(data.user));
     dispatch({
       type: types.LOGIN_SUCCESS,
-      payload: data.user.providerData[0],
+      payload: data.user,
     });
   } catch (error) {
     var message =
@@ -85,10 +85,10 @@ const verifyOtp = (confirmationResult, enetredOtp) => async (dispatch) => {
   try {
     const { user } = await confirmationResult.confirm(enetredOtp);
     const data = await saveUser(user);
-    setUser(user.accessToken, JSON.stringify(data.user.providerData[0]));
+    setUser(user.accessToken, JSON.stringify(data.user));
     dispatch({
       type: types.LOGIN_SUCCESS,
-      payload: data.user.providerData[0],
+      payload: data.user,
     });
   } catch (error) {
     let message = "";
@@ -103,13 +103,11 @@ const verifyOtp = (confirmationResult, enetredOtp) => async (dispatch) => {
 };
 
 const saveUser = async (user) => {
-  console.log(user);
   try {
     const { data } = await axios.post(
       process.env.ENDPOINT + "/api/auth/register",
       {
-        providerData: user.providerData,
-        uid: user.uid,
+        providerData: user.providerData[0],
       }
     );
     return data;
