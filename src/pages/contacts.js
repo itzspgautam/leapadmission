@@ -36,6 +36,39 @@ import {
   FaUser,
 } from "react-icons/fa";
 
+const socialLink = [
+  {
+    link: "https://facebook.com/leapadmission",
+    icon: <AiOutlineFacebook size={30} />,
+    colorScheme: "facebook",
+  },
+  {
+    link: "https://instagram.com/leapadmission",
+    icon: <AiOutlineInstagram size={30} />,
+    colorScheme: "purple",
+  },
+  {
+    link: "https://twitter.com/leapadmission",
+    icon: <AiOutlineTwitter size={30} />,
+    colorScheme: "twitter",
+  },
+  {
+    link: "https://youtube.com/leapadmission",
+    icon: <AiOutlineYoutube size={30} />,
+    colorScheme: "red",
+  },
+  {
+    link: "https://wa.me/+17328616559",
+    icon: <AiOutlineWhatsApp size={30} />,
+    colorScheme: "whatsapp",
+  },
+  {
+    link: "https://linkedin.com/company/leapadmission",
+    icon: <AiOutlineLinkedin size={30} />,
+    colorScheme: "linkedin",
+  },
+];
+
 const Contacts = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -261,76 +294,14 @@ const Contacts = () => {
         >
           Follow us on
         </Text>
-        <Center gap={5}>
-          <Link href="https://facebook.com/leapadmission" target="_blank">
-            <IconButton
-              colorScheme={"facebook"}
-              size="lg"
-              h="16"
-              w="16"
-              rounded={"sm"}
-            >
-              <AiOutlineFacebook size={40} />
-            </IconButton>
-          </Link>
-          <Link href="https://instagram.com/leapadmission" target="_blank">
-            <IconButton
-              colorScheme={"purple"}
-              size="lg"
-              h="16"
-              w="16"
-              rounded={"sm"}
-            >
-              <AiOutlineInstagram size={40} />
-            </IconButton>
-          </Link>
-          <Link href="https://twitter.com/leapadmission" target="_blank">
-            <IconButton
-              colorScheme={"twitter"}
-              size="lg"
-              h="16"
-              w="16"
-              rounded={"sm"}
-            >
-              <AiOutlineTwitter size={40} />
-            </IconButton>
-          </Link>
-          <Link href="https://youtube.com/leapadmission" target="_blank">
-            <IconButton
-              colorScheme={"red"}
-              size="lg"
-              h="16"
-              w="16"
-              rounded={"sm"}
-            >
-              <AiOutlineYoutube size={40} />
-            </IconButton>
-          </Link>
-          <Link href="https://wa.me/+17328616559" target="_blank">
-            <IconButton
-              colorScheme={"whatsapp"}
-              size="lg"
-              h="16"
-              w="16"
-              rounded={"sm"}
-            >
-              <AiOutlineWhatsApp size={40} />
-            </IconButton>
-          </Link>
-          <Link
-            href="https://linkedin.com/company/leapadmission"
-            target="_blank"
-          >
-            <IconButton
-              colorScheme={"linkedin"}
-              size="lg"
-              h="16"
-              w="16"
-              rounded={"sm"}
-            >
-              <AiOutlineLinkedin size={40} />
-            </IconButton>
-          </Link>
+        <Center gap={2}>
+          {socialLink?.map((sl) => (
+            <Link href={sl.link} target="_blank" key={sl.link}>
+              <IconButton colorScheme={sl.colorScheme} rounded={"sm"} size="md">
+                {sl.icon}
+              </IconButton>
+            </Link>
+          ))}
         </Center>
       </Box>
     </Box>

@@ -211,9 +211,11 @@ const Navbar = () => {
             </Text>
             <Text color={"gray.400"}>Search Something</Text>
           </Center>
-          <Button colorScheme="teal" h="10">
-            <RiPhoneFill size="20" />
-          </Button>
+          <Link href="tel:+1-860-209-8792">
+            <Button colorScheme="teal" h="10">
+              <RiPhoneFill size="20" />
+            </Button>
+          </Link>
           {user ? (
             <Menu>
               <MenuButton>

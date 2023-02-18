@@ -3,6 +3,7 @@ import {
   Features,
   Hero,
   Services,
+  Testimonial,
   UniversityCarausel,
   WhyChooseUs,
 } from "@/Components";
@@ -10,7 +11,6 @@ import axios from "axios";
 import Head from "next/head";
 
 import React from "react";
-import TestimonialCarausel from "./testimonial";
 
 const index = ({ testimonials }) => {
   return (
@@ -32,7 +32,7 @@ const index = ({ testimonials }) => {
       <WhyChooseUs />
       <Features />
       <Services />
-      <TestimonialCarausel testimonials={testimonials} />
+      <Testimonial testimonials={testimonials} type="static" />
     </>
   );
 };
