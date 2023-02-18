@@ -3,7 +3,6 @@ import {
   Features,
   Hero,
   Services,
-  TestimonialCarausel,
   UniversityCarausel,
   WhyChooseUs,
 } from "@/Components";
@@ -11,6 +10,7 @@ import axios from "axios";
 import Head from "next/head";
 
 import React from "react";
+import TestimonialCarausel from "./testimonial";
 
 const index = ({ testimonials }) => {
   return (
@@ -37,10 +37,15 @@ const index = ({ testimonials }) => {
   );
 };
 
-index.getInitialProps = async function () {
-  const res = await axios.get(process.env.ENDPOINT + "/api/testimonials");
-  const testimonials = res.data;
-  return { testimonials };
-};
+export async function getStaticProps() {
+  // Fetch testimonials using Axios
+  const response = await axios.get(`${process.env.ENDPOINT}/api/testimonials`);
+  const testimonials = response.data.testimonials;
+  return {
+    props: {
+      testimonials,
+    },
+  };
+}
 
 export default index;

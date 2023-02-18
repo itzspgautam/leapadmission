@@ -2,6 +2,7 @@ import { Images } from "@/Constants";
 import UserActions from "@/State/Actions/UserActions";
 import {
   Avatar,
+  Box,
   Button,
   Center,
   Flex,
@@ -95,9 +96,9 @@ const ChildrenList = ({ page }) => {
   const router = useRouter();
 
   return (
-    <Popover trigger={"hover"} placement={"bottom-start"}>
+    <>
       {page.hasChildren ? (
-        <>
+        <Popover trigger={"hover"} placement={"bottom-start"}>
           <PopoverTrigger>
             <Link href={page.link} style={{ width: "100%" }}>
               <Text
@@ -118,23 +119,22 @@ const ChildrenList = ({ page }) => {
           >
             <Stack listStyleType={"none"} w="100%" justifyContent={"flex-end"}>
               {page?.children?.map((page) => (
-                <Link href={page.link} key={page._id}>
-                  <Flex
-                    _hover={{ bg: "teal.100" }}
-                    p="2"
-                    borderRadius={"md"}
-                    px="2"
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
-                    <ChildrenList page={page} />
-                    {page.hasChildren && <FaChevronDown size="12" />}
-                  </Flex>
-                </Link>
+                <Flex
+                  key={page._id}
+                  _hover={{ bg: "teal.100" }}
+                  p="2"
+                  borderRadius={"md"}
+                  px="2"
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                >
+                  <ChildrenList page={page} />
+                  {page.hasChildren && <FaChevronDown size="12" />}
+                </Flex>
               ))}
             </Stack>
           </PopoverContent>
-        </>
+        </Popover>
       ) : (
         <Link href={page.link}>
           <Text
@@ -145,7 +145,7 @@ const ChildrenList = ({ page }) => {
           </Text>
         </Link>
       )}
-    </Popover>
+    </>
   );
 };
 
@@ -187,19 +187,13 @@ const Navbar = () => {
         zIndex={2}
       >
         <Image src={Images.LOGO_WIDE} height="35" alt="LeapAdmission Logo" />
-        <UnorderedList
-          listStyleType={"none"}
-          display="flex"
-          gap="8"
-          w="100%"
-          justifyContent={"flex-end"}
-        >
+        <Box display="flex" gap="8" w="100%" justifyContent={"flex-end"}>
           {NavPages.map((page) => (
-            <Link href={page.link} key={page._id}>
+            <Box key={page._id}>
               <ChildrenList page={page} />
-            </Link>
+            </Box>
           ))}
-        </UnorderedList>
+        </Box>
         <Center justifyContent={"flex-end"} gap="8">
           <Center
             w="300px"

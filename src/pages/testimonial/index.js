@@ -1,10 +1,9 @@
-import { Images } from "@/Constants";
+import { Images } from "../../Constants";
 import { Avatar, Box, Center, Flex, Text } from "@chakra-ui/react";
-import Image from "next/image";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { FaQuoteRight } from "react-icons/fa";
+import axios from "axios";
 
 const TestimonialCarausel = ({ testimonials }) => {
   const responsive = {
@@ -62,7 +61,7 @@ const TestimonialCarausel = ({ testimonials }) => {
         slidesToSlide={1}
         swipeable
       >
-        {testimonials?.testimonials?.map((tsm) => (
+        {testimonials?.map((tsm) => (
           <Box p="4" key={tsm._id} h={["40vh"]}>
             <Flex
               justifyContent={"space-between"}
@@ -98,5 +97,16 @@ const TestimonialCarausel = ({ testimonials }) => {
     </Box>
   );
 };
+
+export async function getStaticProps() {
+  // Fetch testimonials using Axios
+  const response = await axios.get(`${process.env.ENDPOINT}/api/testimonials`);
+  const testimonials = response.data.testimonials;
+  return {
+    props: {
+      testimonials,
+    },
+  };
+}
 
 export default TestimonialCarausel;

@@ -13,15 +13,11 @@ import BgWeb from "../Assets/Images/about-us-bg-web.png";
 import BgMobile from "../Assets/Images/about-us-bg-mobile.png";
 import { Images } from "@/Constants";
 import { FaGlobe } from "react-icons/fa";
-import {
-  Features,
-  Services,
-  TestimonialCarausel,
-  WhyChooseUs,
-} from "@/Components";
+import { Features, Services, WhyChooseUs } from "@/Components";
 import { AiOutlineAim, AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Head from "next/head";
+import TestimonialCarausel from "./testimonial";
 const about = ({ testimonials }) => {
   return (
     <div>
@@ -250,9 +246,15 @@ const about = ({ testimonials }) => {
   );
 };
 
-about.getInitialProps = async function () {
-  const res = await axios.get(process.env.ENDPOINT + "/api/testimonials");
-  const testimonials = res.data;
-  return { testimonials };
-};
+export async function getStaticProps() {
+  // Fetch testimonials using Axios
+  const response = await axios.get(`${process.env.ENDPOINT}/api/testimonials`);
+  const testimonials = response.data.testimonials;
+  return {
+    props: {
+      testimonials,
+    },
+  };
+}
+
 export default about;

@@ -32,7 +32,6 @@ const LoginDrawer = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const socialLogin = async (provider) => {
-    console.log("Provied", provider);
     dispatch(UserActions.socialLogin(provider));
   };
 
