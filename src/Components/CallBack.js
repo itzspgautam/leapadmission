@@ -84,11 +84,7 @@ const CallBack = () => {
             Request Callback from Us
           </Text>
 
-          <Image
-            src={Images.CALLBACK_ART.default.src}
-            alt="Call Back"
-            h="80%"
-          />
+          <Image src={Images.CALLBACK_ART.default.src} alt="Call Back" />
         </Center>
         <Box w="100%" p="5" bg="blue.600">
           {status === "success" ? (

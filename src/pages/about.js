@@ -18,7 +18,7 @@ import { AiOutlineAim, AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Head from "next/head";
 const about = ({ testimonials }) => {
-  const title = "About Us - LeapAdmission";
+  const title = "About Us | LeapAdmission";
   const description =
     "Learn more about LeapAdmission and our mission to help students apply to their dream universities with expert guidance and support from accomplished alumni and current students. Discover our free personalized counseling and courses today.";
   const keywords =
