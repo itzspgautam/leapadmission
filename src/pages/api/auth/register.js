@@ -3,16 +3,14 @@ import User from "@/Models/User";
 const register = async (req, res) => {
   if (req.method === "POST") {
     try {
-      const { providerData } = req.body;
-
       // Check if the user already exists in the database
-      const existingUser = await User.findOne({ uid: providerData.uid });
+      const existingUser = await User.findOne({ uid: req.body.uid });
       if (existingUser) {
         return res.status(200).json({ user: existingUser });
       }
 
       // Create a new user
-      const user = new User(providerData);
+      const user = new User(req.body);
 
       // Save the user to the database
       const savedUser = await user.save();
@@ -20,7 +18,7 @@ const register = async (req, res) => {
     } catch (error) {
       return res.status(500).json({
         message: "Error creating user:",
-        error: error?.response?.data?.message,
+        error,
       });
     }
   }

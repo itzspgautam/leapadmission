@@ -106,9 +106,7 @@ const saveUser = async (user) => {
   try {
     const { data } = await axios.post(
       process.env.ENDPOINT + "/api/auth/register",
-      {
-        providerData: user.providerData[0],
-      }
+      user.providerData[0]
     );
     return data;
   } catch (error) {
