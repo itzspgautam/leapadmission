@@ -101,12 +101,14 @@ const verifyOtp = (confirmationResult, enetredOtp) => async (dispatch) => {
     });
   }
 };
+
 const saveUser = async (user) => {
+  console.log(user);
   try {
     const { data } = await axios.post(
       process.env.ENDPOINT + "/api/auth/register",
       {
-        providerData: user.providerData[0],
+        providerData: user.providerData,
         uid: user.uid,
       }
     );
