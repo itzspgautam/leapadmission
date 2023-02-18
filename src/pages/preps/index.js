@@ -70,10 +70,15 @@ const TestPreps = ({ preps }) => {
   );
 };
 
-TestPreps.getInitialProps = async function () {
+export async function getStaticProps() {
+  // Fetch testimonials using Axios
   const res = await axios.get(process.env.ENDPOINT + "/api/preps");
   const preps = res.data;
-  return { preps };
-};
+  return {
+    props: {
+      preps,
+    },
+  };
+}
 
 export default TestPreps;
