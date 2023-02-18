@@ -5,6 +5,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import axios from "axios";
 import { Testimonial } from "@/Components";
+import Head from "next/head";
 
 const TestimonialPage = ({ testimonials }) => {
   const title = "testimonials | LeapAdmission";
