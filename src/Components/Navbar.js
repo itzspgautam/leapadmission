@@ -186,7 +186,9 @@ const Navbar = () => {
         gap="10"
         zIndex={2}
       >
-        <Image src={Images.LOGO_WIDE} height="35" alt="LeapAdmission Logo" />
+        <Link href="/" style={{ height: "35px", width: "40%" }}>
+          <Image src={Images.LOGO_WIDE} height="35" alt="LeapAdmission Logo" />
+        </Link>
         <Box display="flex" gap="8" w="100%" justifyContent={"flex-end"}>
           {NavPages.map((page) => (
             <Box key={page._id}>
@@ -261,7 +263,9 @@ const Navbar = () => {
         <NavDrawer pages={NavPages} path={router.pathname}>
           <TbAlignLeft size={25} />
         </NavDrawer>
-        <Image src={Images.LOGO_WIDE} height="30" alt="logo" />
+        <Link href="/" style={{ height: "35px" }}>
+          <Image src={Images.LOGO_WIDE} height="35" alt="logo" />
+        </Link>
 
         <Center justifyContent={"flex-end"} gap="5">
           {user ? (
