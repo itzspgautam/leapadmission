@@ -1,7 +1,10 @@
+import DbConnect from "@/Config/dbConfig";
 import User from "@/Models/User";
 
 const register = async (req, res) => {
   if (req.method === "POST") {
+    await DbConnect();
+
     try {
       // Check if the user already exists in the database
       const existingUser = await User.findOne({ uid: req.body.uid });
