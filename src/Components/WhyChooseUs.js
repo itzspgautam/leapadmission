@@ -1,107 +1,107 @@
 import {
-  Avatar,
   Box,
-  Card,
-  Center,
-  Container,
-  Grid,
-  GridItem,
+  Flex,
   Heading,
   Text,
+  useColorModeValue,
+  IconButton,
+  Center,
 } from "@chakra-ui/react";
-import React from "react";
-import { BiBook, BiMoney, BiSupport, BiTime } from "react-icons/bi";
-import { Images } from "@/Constants";
-const WhyChooseUs = () => {
-  const WhyChooseUs = [
-    {
-      _id: "1",
-      title: "Premium Services for Free",
-      image: Images.WCU_SUPPORT,
-      color: "orange",
-      icon: <BiMoney size="30" />,
-    },
-    {
-      _id: "2",
-      title: "Your Personalised Admission Guru",
-      image: Images.WCU_SUPPORT,
-      color: "green",
-      icon: <BiSupport size="30" />,
-    },
-    {
-      _id: "3",
-      title: "Get Insights from the Students and Alumni.",
-      image: Images.WCU_SUPPORT,
-      color: "blue",
-      icon: <BiBook size="30" />,
-    },
-    {
-      _id: "4",
-      title: "Available Anytime",
-      image: Images.WCU_SUPPORT,
-      color: "facebook",
-      icon: <BiTime size="30" />,
-    },
-  ];
+import { useState } from "react";
+import { BiMoney, BiSupport, BiBook, BiTime } from "react-icons/bi";
+
+const WhyChooseUsData = [
+  {
+    _id: "1",
+    title: "Premium Services for Free",
+    color: "orange",
+    icon: <BiMoney size="30" />,
+  },
+  {
+    _id: "2",
+    title: "Your Personalised Admission Guru",
+    color: "green",
+    icon: <BiSupport size="30" />,
+  },
+  {
+    _id: "3",
+    title: "Get Insights from the Students and Alumni.",
+    color: "purple",
+    icon: <BiBook size="30" />,
+  },
+  {
+    _id: "4",
+    title: "Available Anytime",
+    color: "teal",
+    icon: <BiTime size="30" />,
+  },
+];
+
+const WhyChooseUsCard = ({ title, color, icon }) => {
+  const hoverColor = useColorModeValue(`${color}.600`, `${color}.300`);
+
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <Center
-      flexDir={"column"}
-      textAlign={"center"}
-      gap={[5, 5, 8]}
-      px="4"
-      py="20"
+    <Flex
+      direction="column"
+      align="center"
+      justify="center"
+      minH="10rem"
+      w="full"
+      px={4}
+      py={6}
+      bg="white"
+      border="1px"
+      borderColor="gray.100"
+      borderRadius="md"
+      _hover={{ bg: hoverColor, color: "white" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      boxShadow="md"
     >
-      <Text
-        as={"h2"}
-        fontSize={[22, 24, 30]}
-        fontWeight={"bold"}
-        color="blue.900"
-        lineHeight={"1"}
-      >
-        Why Choose Us
-      </Text>
-      <Grid
-        w={["100%", "80%", "70%"]}
-        templateColumns={["repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}
-        gap={2}
-      >
-        {WhyChooseUs.map((item) => (
-          <GridItem key={item._id}>
-            <Center
-              flexDir={"column"}
-              gap="4"
-              bgColor={"gray.50"}
-              p="4"
-              transition={".2s"}
-              borderRadius={"md"}
-              h="100%"
-              justifyContent={"space-evenly"}
-              _hover={{ boxShadow: "lg", bg: "blue.300" }}
-            >
-              <Center
-                bg={`${item.color}.100`}
-                h="20"
-                w="20"
-                borderRadius={"full"}
-              >
-                <Text color={`${item.color}.700`}>{item.icon}</Text>
-              </Center>
-
-              <Text
-                fontSize={[14, 16, 16]}
-                fontWeight="semibold"
-                lineHeight={1.3}
-                color="blue.900"
-              >
-                {item.title}
-              </Text>
-            </Center>
-          </GridItem>
-        ))}
-      </Grid>
-    </Center>
+      <IconButton
+        aria-label={title}
+        bg={hovered ? hoverColor : color}
+        color="white"
+        borderRadius="full"
+        icon={icon}
+        size="lg"
+        transition="all 0.2s"
+        _hover={{ transform: "scale(1.1)" }}
+      />
+      <Heading mt={4} fontSize="lg" fontWeight="semibold" textAlign="center">
+        {title}
+      </Heading>
+    </Flex>
   );
 };
 
-export default WhyChooseUs;
+const WhyCooseUs = () => {
+  return (
+    <Box py={16} display="flex" alignItems={"center"} flexDir="column">
+      <Heading textAlign="center" mb={8}>
+        Why Choose Us
+      </Heading>
+      <Center maxW={["80%"]}>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          justify="space-around"
+          align="center"
+          gap="4"
+        >
+          {WhyChooseUsData.map((card) => (
+            <WhyChooseUsCard
+              key={card._id}
+              title={card.title}
+              color={card.color}
+              icon={card.icon}
+            />
+          ))}
+        </Flex>
+      </Center>
+    </Box>
+  );
+};
+
+export default WhyCooseUs;

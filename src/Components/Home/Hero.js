@@ -76,17 +76,19 @@ const Hero = () => {
                 &nbsp; Request Call Back
               </Button>
             </Link>
-            <Button
-              fontWeight={"regular"}
-              colorScheme={"teal"}
-              variant="outline"
-              borderWidth={2}
-              size={["md", "md", "lg"]}
-              borderRadius="sm"
-              _hover={{ background: "teal", color: "white" }}
-            >
-              Our Mentors
-            </Button>
+            <Link href="/mentor">
+              <Button
+                fontWeight={"regular"}
+                colorScheme={"teal"}
+                variant="outline"
+                borderWidth={2}
+                size={["md", "md", "lg"]}
+                borderRadius="sm"
+                _hover={{ background: "teal", color: "white" }}
+              >
+                Our Mentors
+              </Button>
+            </Link>
           </Flex>
         </Flex>
       </Box>

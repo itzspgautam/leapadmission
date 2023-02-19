@@ -13,7 +13,13 @@ import BgWeb from "../Assets/Images/about-us-bg-web.png";
 import BgMobile from "../Assets/Images/about-us-bg-mobile.png";
 import { Images } from "@/Constants";
 import { FaGlobe } from "react-icons/fa";
-import { Features, Services, Testimonial, WhyChooseUs } from "@/Components";
+import {
+  Features,
+  HowWeWork,
+  Services,
+  Testimonial,
+  WhyChooseUs,
+} from "@/Components";
 import { AiOutlineAim, AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Head from "next/head";
@@ -125,6 +131,7 @@ const about = ({ testimonials }) => {
           opacity={0.8}
         />
       </Box>
+      <HowWeWork />
       <Container py="16" px={[4, 4]} maxW={["100vw", "100vw", "70vw"]}>
         <Heading
           textAlign={"center"}
