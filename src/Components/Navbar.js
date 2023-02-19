@@ -37,6 +37,7 @@ import NavDrawer from "./Drawer";
 
 const NavPages = [
   { _id: 1, title: "Home", link: "/", icon: <AiOutlineHome /> },
+  { _id: 3, title: "Mentors", link: "/mentor", icon: <AiOutlineInfo /> },
 
   {
     _id: 2,
@@ -86,7 +87,6 @@ const NavPages = [
       },
     ],
   },
-  // { _id: 3, title: "Mentors", link: "/mentor", icon: <AiOutlineInfo /> },
 
   { _id: 4, title: "About Us", link: "/about", icon: <AiOutlineInfo /> },
   { _id: 5, title: "Contacts", link: "/contacts", icon: <AiOutlinePhone /> },

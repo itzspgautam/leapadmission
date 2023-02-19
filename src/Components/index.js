@@ -11,6 +11,7 @@ import PhoneInputUi from "./Auth/PhoneInputUi";
 import OtpInputUi from "./Auth/OtpInput";
 import CallBack from "./CallBack";
 import Testimonial from "./Testimonial";
+import HowWeWork from "./HowWeWork";
 
 export {
   Layout,
@@ -26,4 +27,5 @@ export {
   OtpInputUi,
   CallBack,
   Testimonial,
+  HowWeWork,
 };
