@@ -13,6 +13,7 @@ const nextConfig = {
     APP_ID: process.env.APP_ID,
     DB_URI: process.env.DB_URI,
     ENDPOINT: process.env.ENDPOINT,
+    FIREBASE_ADMIN_JSON: process.env.FIREBASE_ADMIN_JSON,
   },
 };
 

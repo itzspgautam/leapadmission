@@ -232,6 +232,9 @@ const Navbar = () => {
               </MenuButton>
               <MenuList>
                 {/* <MenuItem>Profile</MenuItem> */}
+                <Link href="/admin">
+                  <MenuItem>Admin Dashboard</MenuItem>
+                </Link>
                 <MenuItem onClick={logout}>Logout</MenuItem>
               </MenuList>
             </Menu>

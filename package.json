@@ -17,6 +17,7 @@
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "firebase": "^9.16.0",
+    "firebase-admin": "^11.5.0",
     "framer-motion": "^8.5.5",
     "moment": "^2.29.4",
     "mongoose": "^6.9.0",

@@ -27,14 +27,4 @@ export default async function handler(req, res) {
       res.status(400).json({ success: false, error: error.message });
     }
   }
-  if (req.method === "GET") {
-    await DbConnect();
-    try {
-      const contacts = await Contact.find();
-
-      res.status(200).json({ success: true, contacts });
-    } catch (error) {
-      res.status(400).json({ success: false, error: error.message });
-    }
-  }
 }

@@ -10,3 +10,11 @@ export const getUser = async () => {
     localStorage.clear();
   }
 };
+
+export const getToken = async () => {
+  if (localStorage.getItem("token")) {
+    return localStorage.getItem("token");
+  } else {
+    localStorage.clear();
+  }
+};

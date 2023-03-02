@@ -1,28 +1,38 @@
 const mongoose = require("mongoose");
 let User;
 if (!mongoose.models.User) {
-  const userSchema = new mongoose.Schema({
-    displayName: {
-      type: String,
+  const userSchema = new mongoose.Schema(
+    {
+      displayName: {
+        type: String,
+      },
+      email: {
+        type: String,
+      },
+      photoURL: {
+        type: String,
+      },
+      phoneNumber: {
+        type: String,
+      },
+      providerId: {
+        type: String,
+        required: true,
+      },
+      uid: {
+        type: String,
+        required: true,
+      },
+      role: {
+        type: String,
+        default: "user",
+      },
     },
-    email: {
-      type: String,
-    },
-    photoURL: {
-      type: String,
-    },
-    phoneNumber: {
-      type: String,
-    },
-    providerId: {
-      type: String,
-      required: true,
-    },
-    uid: {
-      type: String,
-      required: true,
-    },
-  });
+    {
+      timestamps: true,
+      useCreateIndex: true,
+    }
+  );
 
   User = mongoose.model("User", userSchema);
 } else {

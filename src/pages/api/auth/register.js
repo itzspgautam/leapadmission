@@ -12,8 +12,11 @@ const register = async (req, res) => {
         return res.status(200).json({ user: existingUser });
       }
 
+      console.log(req.body);
       // Create a new user
       const user = new User(req.body);
+
+      console.log("to register", user);
 
       // Save the user to the database
       const savedUser = await user.save();
