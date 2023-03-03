@@ -18,7 +18,8 @@ export default function Document() {
         <script>
           window.dataLayer = window.dataLayer || []; function gtag()
           {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'G-E5S71GQYRT');
+          gtag(&quot;js&quot;, new Date()); gtag(&quot;config&quot;,
+          &quot;G-E5S71GQYRT&quot;);
         </script>
       </Head>
       <body>
