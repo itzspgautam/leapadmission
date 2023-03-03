@@ -1,10 +1,19 @@
-import ReactGA from "react-ga";
+import { initGA, logPageView } from "@/Config/Analytics";
+import { Component } from "react";
 
-export const initGA = () => {
-  ReactGA.initialize("G-E5S71GQYRT");
-};
+class MyApp extends Component {
+  componentDidMount() {
+    initGA();
+    logPageView();
+  }
 
-export const logPageView = () => {
-  ReactGA.set({ page: window.location.pathname });
-  ReactGA.pageview(window.location.pathname);
-};
+  componentDidUpdate() {
+    logPageView();
+  }
+
+  render() {
+    return <div>Hello World!</div>;
+  }
+}
+
+export default MyApp;
