@@ -171,7 +171,7 @@ const CallBack = () => {
                 <InputGroup background={"white"}>
                   <Textarea
                     type="text"
-                    placeholder="Massage (Optional)"
+                    placeholder="Message (Optional)"
                     name="message"
                     required
                   />
