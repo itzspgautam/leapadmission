@@ -35,9 +35,9 @@ const AdminRoute = ({ children }) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      if (error?.response?.data?.error) {
-        dispatch(UserActions.logout());
-      }
+
+      dispatch(UserActions.logout());
+
       console.log(error?.response?.data);
     }
   };
