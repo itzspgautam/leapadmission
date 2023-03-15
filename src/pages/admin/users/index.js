@@ -101,10 +101,11 @@ const UserCardGrid = () => {
                   <Avatar
                     size="xl"
                     name={user?.displayName}
+                    g
                     src={user?.photoURL}
                   />
                   <Text mt="2" fontWeight={"bold"} color={"blackAlpha.900"}>
-                    {user?.displayName}
+                    {user?.displayName ? user?.displayName : "Not Updated"}
                   </Text>
                   <Text
                     fontWeight={"light"}
@@ -142,7 +143,7 @@ const UserCardGrid = () => {
                         borderRadius={"sm"}
                         colorScheme="blue"
                         w="100%"
-                        isDisabled={user?.phone ? false : true}
+                        isDisabled={user?.phoneNumber ? false : true}
                       >
                         Call
                       </Button>
