@@ -1,4 +1,5 @@
 import { AppConfig } from "@/Config/AppConfig";
+import UserActions from "@/State/Actions/UserActions";
 import { getToken } from "@/Utils/AuthStorage";
 import {
   Box,
@@ -20,27 +21,37 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import moment from "moment";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaFacebook, FaGoogle, FaPhone } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 const UserCardGrid = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const dispatch = useDispatch();
+  const router = useRouter();
   const fetchUsers = async () => {
     setLoading(true);
-    const token = await getToken();
-    const { data } = await axios.post(
-      `${AppConfig.API_ENDPOINT}/users`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      const token = await getToken();
+      const { data } = await axios.post(
+        `${AppConfig.API_ENDPOINT}/users`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUsers(data.users);
+      setLoading(false);
+    } catch (error) {
+      if (error?.response?.data?.error) {
+        dispatch(UserActions.logout());
+        router.replace("/admin");
       }
-    );
-    setUsers(data.users);
-    setLoading(false);
+    }
   };
   useEffect(() => {
     fetchUsers();

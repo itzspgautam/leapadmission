@@ -15,19 +15,11 @@ export default function Document() {
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-E5S71GQYRT"
         />
-            
         <Script
           id="google-analytics"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-E5S71GQYRT', {
-            page_path: window.location.pathname,
-          });
-        `,
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-E5S71GQYRT', {page_path: window.location.pathname,});`,
           }}
         />
       </Head>

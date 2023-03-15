@@ -1,4 +1,5 @@
 import { AppConfig } from "@/Config/AppConfig";
+import UserActions from "@/State/Actions/UserActions";
 import { getToken } from "@/Utils/AuthStorage";
 import {
   Box,
@@ -21,27 +22,38 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import moment from "moment";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaFacebook, FaGoogle, FaPhone } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 const UserCardGrid = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [btnLoading, setBtnLoading] = useState(null);
 
   const fetchContacts = async () => {
-    const token = await getToken();
-    const { data } = await axios.post(
-      `${AppConfig.API_ENDPOINT}/contact/getContacts`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      const token = await getToken();
+      const { data } = await axios.post(
+        `${AppConfig.API_ENDPOINT}/contact/getContacts`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setContacts(data.contacts);
+      setLoading(false);
+    } catch (error) {
+      if (error?.response?.data?.error) {
+        dispatch(UserActions.logout());
+        router.replace("/admin");
       }
-    );
-    setContacts(data.contacts);
-    setLoading(false);
+    }
   };
 
   const updateCallback = async (_id, status) => {
