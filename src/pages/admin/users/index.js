@@ -47,10 +47,8 @@ const UserCardGrid = () => {
       setUsers(data.users);
       setLoading(false);
     } catch (error) {
-      if (error?.response?.data?.error) {
-        dispatch(UserActions.logout());
-        router.replace("/admin");
-      }
+      dispatch(UserActions.logout());
+      router.replace("/admin");
     }
   };
   useEffect(() => {

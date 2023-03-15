@@ -49,10 +49,8 @@ const UserCardGrid = () => {
       settestiM(data.testimonials);
       setLoading(false);
     } catch (error) {
-      if (error?.response?.data?.error) {
-        dispatch(UserActions.logout());
-        router.replace("/admin");
-      }
+      dispatch(UserActions.logout());
+      router.replace("/admin");
     }
   };
 
