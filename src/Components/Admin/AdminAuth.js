@@ -30,15 +30,13 @@ const AdminRoute = ({ children }) => {
         }
       );
       //console.log(data);
-
-      setRole("admin");
       setLoading(false);
     } catch (error) {
       setLoading(false);
 
       dispatch(UserActions.logout());
 
-      console.log(error?.response?.data);
+      console.log(error);
     }
   };
   useEffect(() => {
