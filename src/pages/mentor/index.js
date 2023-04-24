@@ -130,7 +130,7 @@ const index = ({ testimonials }) => {
             <Text mb={6} fontSize={{ base: "sm", md: "md" }} color="gray.500">
               Additionally, I have served as a corporate job trainer, equipping
               aspiring tech professionals with the skills and knowledge
-              necessary to succeed in today's competitive job market.
+              necessary to succeed in today &apos;s competitive job market.
             </Text>
             <Link href="https://wa.me/+919821380110">
               <Button colorScheme="teal" size="md" leftIcon={<FaWhatsapp />}>
