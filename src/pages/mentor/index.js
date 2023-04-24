@@ -40,11 +40,15 @@ const index = ({ testimonials }) => {
 
       <Box bg="white" py={10}>
         <Flex
+          bg={"gray.100"}
           direction={{ base: "column", md: "row" }}
           align={{ base: "center", md: "flex-start" }}
           mx="auto"
           maxW="7xl"
           px={6}
+          p={8}
+          borderRadius={8}
+          _hover={{ background: "teal.100" }}
         >
           <Box flexShrink={0}>
             <Image
@@ -55,6 +59,7 @@ const index = ({ testimonials }) => {
               objectFit="cover"
               rounded="md"
               shadow="md"
+              borderRadius={"100%"}
             />
           </Box>
           <Box mt={{ base: 6, md: 0 }} ml={{ md: 6 }}>
@@ -89,6 +94,66 @@ const index = ({ testimonials }) => {
               </Button>
             </Link>
           </Box>
+        </Flex>
+
+        <Flex
+          bg={"gray.100"}
+          direction={{ base: "column", md: "row" }}
+          align={{ base: "center", md: "flex-start" }}
+          mx="auto"
+          maxW="7xl"
+          px={6}
+          p={8}
+          borderRadius={8}
+          mt={10}
+          _hover={{ background: "teal.100" }}
+        >
+          <Box flexShrink={0}></Box>
+          <Box mt={{ base: 6, md: 0 }} ml={{ md: 6 }}>
+            <Text
+              mb={4}
+              fontWeight="bold"
+              fontSize={{ base: "2xl", md: "3xl" }}
+              color="gray.700"
+              as={"h1"}
+            >
+              Sagar Likha -Admission Guru
+            </Text>
+            <Text mb={6} fontSize={{ base: "sm", md: "md" }} color="gray.500">
+              As the Managing Director of LeapAdmission, I bring over a decade
+              of experience in navigating the complex world of international
+              admissions and visa applications. With a particular focus on F1
+              and H1B visas, I have developed a special expertise in helping
+              students and professionals to pursue their goals in the United
+              States.
+            </Text>
+            <Text mb={6} fontSize={{ base: "sm", md: "md" }} color="gray.500">
+              Additionally, I have served as a corporate job trainer, equipping
+              aspiring tech professionals with the skills and knowledge
+              necessary to succeed in today's competitive job market.
+            </Text>
+            <Link href="https://wa.me/+919821380110">
+              <Button colorScheme="teal" size="md" leftIcon={<FaWhatsapp />}>
+                WhatsApp
+              </Button>
+            </Link>
+            <Link href="tel:+919821380110">
+              <Button ml={4} size="md">
+                Contact
+              </Button>
+            </Link>
+          </Box>
+
+          <Image
+            src="https://res.cloudinary.com/dltkycv3q/image/upload/v1682328645/Sagr_Likha_zlrkul.png"
+            alt="Nilesh Mishra"
+            w={{ base: "100%", md: "auto" }}
+            h={{ base: "auto", md: "450px" }}
+            objectFit="cover"
+            rounded="md"
+            shadow="md"
+            borderRadius={"100%"}
+          />
         </Flex>
       </Box>
       <HowWeWork />
