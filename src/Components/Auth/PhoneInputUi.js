@@ -9,32 +9,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { RecaptchaVerifier } from "firebase/auth";
 import { FirebaseAuth } from "@/Config/FirebaseApp";
 import UserActions from "@/State/Actions/UserActions";
+import Colors from "@/Constants/Colors";
+import AuthActions from "@/State/Actions/AuthActions";
 
 const PhoneInputUi = () => {
   const [phone, setPhone] = useState("");
   const Dispatch = useDispatch();
 
   const { userLoading, userError } = useSelector((state) => state.User);
+  const { auth, authLoading, authError } = useSelector((state) => state.User);
 
   useEffect(() => {
-    if (window.recaptchaVerifier) return;
-    generateRecaptcha();
+    const generateRecaptcha = async () => {
+      const appVerifier = new RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: (response) => {},
+        },
+        FirebaseAuth
+      );
+
+      window.recaptchaVerifier = appVerifier;
+    };
+
+    if (typeof window !== "undefined" && !window.recaptchaVerifier) {
+      generateRecaptcha();
+    }
   }, []);
 
-  const appVerifier = window.recaptchaVerifier;
-  const generateRecaptcha = async () => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size: "invisible",
-        callback: (response) => {},
-      },
-      FirebaseAuth
-    );
-  };
-
   const phoneNumberSubmitHandler = async () => {
-    Dispatch(UserActions.sendOtp(appVerifier, phone));
+    Dispatch(AuthActions.loginWithPhone(phone, window.recaptchaVerifier));
   };
 
   return (
@@ -95,12 +100,6 @@ const PhoneInputUi = () => {
               background: "transparent",
             }}
           />
-          <Center>
-            <Text fontSize="10px" mt="5" align={"center"}>
-              By continuning, you agree to our <b>Term & Condition</b> &
-              <b> Privacy Policy</b>.
-            </Text>
-          </Center>
         </Box>
         <Box>
           <Button
@@ -109,7 +108,9 @@ const PhoneInputUi = () => {
             }}
             isLoading={userLoading}
             size={"md"}
-            colorScheme="yellow"
+            fontWeight={"medium"}
+            bg={Colors.PRIMARY[500]}
+            colorScheme="teal"
             loadingText="Loading"
             spinnerPlacement="start"
             borderRadius={"sm"}

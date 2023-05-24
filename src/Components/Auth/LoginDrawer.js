@@ -2,6 +2,7 @@ import { Images } from "@/Constants";
 import {
   Box,
   Button,
+  Card,
   Center,
   Drawer,
   DrawerBody,
@@ -12,92 +13,75 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillFacebook, AiFillGoogleSquare } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import UserActions from "@/State/Actions/UserActions";
 import PhoneInputUi from "./PhoneInputUi";
 import OtpInput from "./OtpInput";
-import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
+
+import { useToast } from "@chakra-ui/react";
+
+import Colors from "@/Constants/Colors";
+import AuthActions from "@/State/Actions/AuthActions";
+const { FirebaseAuth } = require("@/Config/FirebaseApp");
 
 const LoginDrawer = (props) => {
   const dispatch = useDispatch();
-
-  const GoogleAuth = new GoogleAuthProvider();
-  const FacebookAuth = new FacebookAuthProvider();
+  const toast = useToast();
 
   const { phoneAuth } = useSelector((state) => state.User);
+  const { logAuth, auth, authLoading, authError, verificationId } = useSelector(
+    (state) => state.Auth
+  );
 
-  const btnRef = React.useRef();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const socialLogin = async (provider) => {
-    dispatch(UserActions.socialLogin(provider));
+  const socialLogin = async () => {
+    dispatch(AuthActions.loginWithGoogle());
   };
 
+  useEffect(() => {
+    authError &&
+      toast({
+        title: "Error",
+        description: authError,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+        variant: "top-accent",
+      });
+  }, [authError]);
+
   return (
-    <>
-      <span ref={btnRef} onClick={onOpen}>
-        {props.children}
-      </span>
-      <Drawer
-        isOpen={props.loginToAccess ? onOpen : isOpen}
-        placement={"bottom"}
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay backdropFilter="auto" backdropBlur="5px" />
-        <DrawerContent
-          bg="transparent"
-          w={["100vh", "80vw", "30vw"]}
-          margin={"auto"}
-          pb={[0, 20]}
-        >
-          <Center>
-            <Box bg="white" p="3" borderRadius={"md"} zIndex={1} mb="-30px">
-              <Image src={Images.LOGO_WIDE.default.src} h="6" alt="logo" />
+    <Center pt={[5, 10, 20, 30]} pb={"100vh"} px={2} bg={Colors.LIGHT[300]}>
+      <Card w={["100vw", "80vw", "50vw", "30vw"]}>
+        <Box bg="white" borderTopRadius={"xl"} borderBottomRadius={[0, "xl"]}>
+          {!auth && (
+            <Box mt="10" pb="10" px="5">
+              <>
+                {!logAuth?.phoneNumber &&
+                  (verificationId ? <OtpInput /> : <PhoneInputUi />)}
+
+                {!verificationId && !logAuth?.email && (
+                  <Button
+                    w="100%"
+                    leftIcon={<AiFillGoogleSquare size={30} />}
+                    colorScheme="red"
+                    variant="solid"
+                    justifyContent={"center"}
+                    borderRadius="sm"
+                    onClick={() => socialLogin()}
+                    fontSize={[12, 14]}
+                  >
+                    Continue with Google
+                  </Button>
+                )}
+              </>
             </Box>
-          </Center>
-          <Box bg="white" borderTopRadius={"xl"} borderBottomRadius={[0, "xl"]}>
-            <DrawerBody mt="10" pb="10" px="5">
-              {phoneAuth?.status === "sent" ? (
-                <OtpInput />
-              ) : (
-                <>
-                  <PhoneInputUi />
-                  <Stack alignItems={"center"} spacing={4}>
-                    <Text my="3">OR</Text>
-                    <Button
-                      w="100%"
-                      leftIcon={<AiFillGoogleSquare size={30} />}
-                      colorScheme="red"
-                      variant="solid"
-                      justifyContent={"flex-start"}
-                      borderRadius="sm"
-                      onClick={() => socialLogin(GoogleAuth)}
-                      fontSize={[14, 16]}
-                    >
-                      Continue with Google
-                    </Button>
-                    <Button
-                      w="100%"
-                      leftIcon={<AiFillFacebook size={30} />}
-                      colorScheme="facebook"
-                      justifyContent={"flex-start"}
-                      borderRadius="sm"
-                      onClick={() => socialLogin(FacebookAuth)}
-                      fontSize={[14, 16]}
-                    >
-                      Continue with facebook
-                    </Button>
-                  </Stack>
-                </>
-              )}
-            </DrawerBody>
-          </Box>
-        </DrawerContent>
-      </Drawer>
-    </>
+          )}
+        </Box>
+      </Card>
+    </Center>
   );
 };
 

@@ -1,3 +1,3 @@
 export const AppConfig = {
-  API_ENDPOINT: "/api",
+  API_ENDPOINT: "http://localhost:3000/",
 };

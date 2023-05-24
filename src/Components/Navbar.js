@@ -22,75 +22,84 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import {
+  AiFillBell,
+  AiFillNotification,
   AiOutlineHome,
   AiOutlineInfo,
   AiOutlinePhone,
   AiOutlineTable,
   AiOutlineYoutube,
 } from "react-icons/ai";
-import { FaChevronDown } from "react-icons/fa";
-import { RiPhoneFill, RiSearch2Line } from "react-icons/ri";
+import {
+  IoLogoAppleAppstore,
+  IoLogoGooglePlaystore,
+  IoNotifications,
+} from "react-icons/io5";
+import { FaBell, FaChevronDown } from "react-icons/fa";
+
 import { TbAlignLeft } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import LoginDrawer from "./Auth/LoginDrawer";
 import NavDrawer from "./Drawer";
+import Colors from "@/Constants/Colors";
+import { BsBell } from "react-icons/bs";
 
 const NavPages = [
   { _id: 1, title: "Home", link: "/", icon: <AiOutlineHome /> },
-  { _id: 3, title: "Mentors", link: "/mentor", icon: <AiOutlineInfo /> },
-
-  {
-    _id: 2,
-    title: "Test Prep",
-    link: "/preps",
-    icon: <AiOutlineTable />,
-    hasChildren: true,
-    children: [
-      {
-        _id: "2_1",
-        title: "IELTS",
-        link: "/preps/63ec1441b56829f963751950",
-        icon: <AiOutlineYoutube />,
-        hasChildren: true,
-        children: [
-          {
-            _id: "2_1_1",
-            title: "Listening",
-            link: "/preps/63ec1441b56829f963751950",
-            icon: <AiOutlineYoutube />,
-          },
-          {
-            _id: "2_1_2",
-            title: "Reading",
-            link: "/preps/63ec1441b56829f963751950",
-            icon: <AiOutlineYoutube />,
-          },
-          {
-            _id: "2_1_3",
-            title: "Writing",
-            link: "/preps/63ec1441b56829f963751950",
-            icon: <AiOutlineYoutube />,
-          },
-          {
-            _id: "2_1_4",
-            title: "Speaking",
-            link: "/preps/63ec1441b56829f963751950",
-            icon: <AiOutlineYoutube />,
-          },
-          {
-            _id: "2_1_5",
-            title: "Grammer",
-            link: "/preps/63ec1441b56829f963751950",
-            icon: <AiOutlineYoutube />,
-          },
-        ],
-      },
-    ],
-  },
+  { _id: 3, title: "Invest", link: "/invest", icon: <AiOutlineInfo /> },
 
   { _id: 4, title: "About Us", link: "/about", icon: <AiOutlineInfo /> },
   { _id: 5, title: "Contacts", link: "/contacts", icon: <AiOutlinePhone /> },
 ];
+
+// {
+//   _id: 2,
+//   title: "Test Prep",
+//   link: "/preps",
+//   icon: <AiOutlineTable />,
+//   hasChildren: true,
+//   children: [
+//     {
+//       _id: "2_1",
+//       title: "IELTS",
+//       link: "/preps/63ec1441b56829f963751950",
+//       icon: <AiOutlineYoutube />,
+//       hasChildren: true,
+//       children: [
+//         {
+//           _id: "2_1_1",
+//           title: "Listening",
+//           link: "/preps/63ec1441b56829f963751950",
+//           icon: <AiOutlineYoutube />,
+//         },
+//         {
+//           _id: "2_1_2",
+//           title: "Reading",
+//           link: "/preps/63ec1441b56829f963751950",
+//           icon: <AiOutlineYoutube />,
+//         },
+//         {
+//           _id: "2_1_3",
+//           title: "Writing",
+//           link: "/preps/63ec1441b56829f963751950",
+//           icon: <AiOutlineYoutube />,
+//         },
+//         {
+//           _id: "2_1_4",
+//           title: "Speaking",
+//           link: "/preps/63ec1441b56829f963751950",
+//           icon: <AiOutlineYoutube />,
+//         },
+//         {
+//           _id: "2_1_5",
+//           title: "Grammer",
+//           link: "/preps/63ec1441b56829f963751950",
+//           icon: <AiOutlineYoutube />,
+//         },
+//       ],
+//     },
+//   ],
+// },
 
 const ChildrenList = ({ page }) => {
   const router = useRouter();
@@ -152,14 +161,21 @@ const ChildrenList = ({ page }) => {
 const Navbar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.User);
+  const { auth } = useSelector((state) => state.Auth);
   const logout = () => {
     dispatch(UserActions.logout());
   };
   return (
     <>
-      <Center display={["none", "none", "flex"]} bg="blue.900" p="2" gap="2">
-        <Text color={"white"}>Get Scholarship </Text>
+      <Center
+        display={["none", "none", "flex"]}
+        bg={Colors.PRIMARY[500]}
+        p="1"
+        gap="2"
+      >
+        <Text color={"white"} fontSize={"sm"}>
+          Download app for Android/Ios{" "}
+        </Text>
         <Button
           variant={"outline"}
           colorScheme={"gray"}
@@ -167,14 +183,23 @@ const Navbar = () => {
           _hover={{ color: "blue.800", bg: "white" }}
           size="sm"
         >
-          Learn More
+          <IoLogoGooglePlaystore size={18} />
+        </Button>
+        <Button
+          variant={"outline"}
+          colorScheme={"gray"}
+          color={"white"}
+          _hover={{ color: "blue.800", bg: "white" }}
+          size="sm"
+        >
+          <IoLogoAppleAppstore size={18} />
         </Button>
       </Center>
 
       <Center
         display={["none", "none", "flex"]}
         justifyContent={"space-between"}
-        px="14"
+        px={"10vw"}
         py="2"
         boxShadow={"sm"}
         borderBottom="1px solid"
@@ -186,45 +211,28 @@ const Navbar = () => {
         gap="10"
         zIndex={2}
       >
-        <Link href="/" style={{ height: "35px", width: "40%" }}>
-          <Image src={Images.LOGO_WIDE} height="35" alt="LeapAdmission Logo" />
+        <Link href="/">
+          <Image src={Images.LOGO_WIDE} height="45" alt="Logo" />
         </Link>
-        <Box display="flex" gap="8" w="100%" justifyContent={"flex-end"}>
+        <Box display="flex" gap="8" w="100%" justifyContent={"center"}>
           {NavPages.map((page) => (
             <Box key={page._id}>
               <ChildrenList page={page} />
             </Box>
           ))}
         </Box>
-        <Center justifyContent={"flex-end"} gap="8">
-          <Center
-            w="300px"
-            bg="blue.50"
-            justifyContent={"flex-start"}
-            gap="3"
-            p="1.5"
-            borderRadius={"md"}
-            px="2"
-            h="10"
-            cursor={"pointer"}
-          >
-            <Text color={"gray.400"}>
-              <RiSearch2Line size={20} />
-            </Text>
-            <Text color={"gray.400"}>Search Something</Text>
-          </Center>
-          <Link href="tel:+1-860-209-8792">
-            <Button colorScheme="teal" h="10">
-              <RiPhoneFill size="20" />
-            </Button>
+        <Center justifyContent={"flex-end"} gap="2">
+          <Link href="#">
+            <IoNotifications size="30" color={Colors.SECONDARY[900]} />
           </Link>
-          {user ? (
+          {auth?.user ? (
             <Menu>
               <MenuButton>
                 <Avatar
-                  name={user.displayName}
-                  size={"md"}
-                  src={user.photoURL}
+                  name={auth?.user.displayName}
+                  height={45}
+                  width={45}
+                  src={auth?.user.avatar}
                   alt="user"
                   borderWidth={"3px"}
                   borderColor="gray.300"
@@ -239,14 +247,36 @@ const Navbar = () => {
               </MenuList>
             </Menu>
           ) : (
-            <LoginDrawer>
-              <Avatar
-                name="Leap Admission User"
-                size={"md"}
-                src={Images.USER_DEFAULT.default.src}
-                alt="user"
-              />
-            </LoginDrawer>
+            <Link href="login">
+              <Flex
+                alignItems={"center"}
+                gap={1}
+                p={0.5}
+                borderRadius={"full"}
+                border={"1px solid"}
+                borderColor={Colors.SECONDARY[900]}
+                _hover={{
+                  background: Colors.SECONDARY[900],
+                }}
+                height={39}
+              >
+                <Avatar
+                  name="Login/Signup"
+                  size={"sm"}
+                  src={Images.USER_DEFAULT.default.src}
+                  alt="user"
+                  background={Colors.SECONDARY[900]}
+                />
+                <Text
+                  color={Colors.SECONDARY[900]}
+                  fontSize={"sm"}
+                  pr={2}
+                  _hover={{ color: Colors.LIGHT[100] }}
+                >
+                  Login/Signup
+                </Text>
+              </Flex>
+            </Link>
           )}
         </Center>
       </Center>
@@ -271,16 +301,17 @@ const Navbar = () => {
         </Link>
 
         <Center justifyContent={"flex-end"} gap="5">
-          {user ? (
+          {auth?.user ? (
             <Menu>
               <MenuButton>
                 <Avatar
-                  name={user.displayName}
+                  a={console.log(auth?.user?.avatar)}
+                  name={auth?.user.displayName}
                   size={"md"}
-                  src={user.photoURL}
+                  src={auth?.user?.avatar}
                   alt="user"
-                  borderWidth={"3px"}
-                  borderColor="gray.300"
+                  height={45}
+                  width={45}
                 />
               </MenuButton>
               <MenuList>
@@ -288,14 +319,16 @@ const Navbar = () => {
               </MenuList>
             </Menu>
           ) : (
-            <LoginDrawer>
+            <Link href="login">
               <Avatar
                 name="Leap Admission User"
                 size={"md"}
                 src={Images.USER_DEFAULT.default.src}
                 alt="user"
+                height={45}
+                width={45}
               />
-            </LoginDrawer>
+            </Link>
           )}
         </Center>
       </Center>

@@ -1,4 +1,4 @@
-import User from "@/Models/User";
+import User from "@/models/User";
 
 const admin = require("@/Config/FirebaseAdmin");
 

@@ -13,17 +13,11 @@ import BgWeb from "../Assets/Images/about-us-bg-web.png";
 import BgMobile from "../Assets/Images/about-us-bg-mobile.png";
 import { Images } from "@/Constants";
 import { FaGlobe } from "react-icons/fa";
-import {
-  Features,
-  HowWeWork,
-  Services,
-  Testimonial,
-  WhyChooseUs,
-} from "@/Components";
+import { Features, HowWeWork, Services, WhyChooseUs } from "@/Components";
 import { AiOutlineAim, AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Head from "next/head";
-const about = ({ testimonials }) => {
+const about = () => {
   const title = "About Us | LeapAdmission";
   const description =
     "Learn more about LeapAdmission and our mission to help students apply to their dream universities with expert guidance and support from accomplished alumni and current students. Discover our free personalized counseling and courses today.";
@@ -279,20 +273,8 @@ const about = ({ testimonials }) => {
       <WhyChooseUs />
       <Features />
       <Services />
-      <Testimonial testimonials={testimonials} type="static" />
     </div>
   );
 };
-
-export async function getStaticProps() {
-  // Fetch testimonials using Axios
-  const response = await axios.get(`${process.env.ENDPOINT}/api/testimonials`);
-  const testimonials = response.data.testimonials;
-  return {
-    props: {
-      testimonials,
-    },
-  };
-}
 
 export default about;

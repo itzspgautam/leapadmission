@@ -46,25 +46,19 @@ const index = ({ testimonials }) => {
         <meta name="twitter:image" content={image} />
       </Head>
       <Hero />
-      <UniversityCarausel />
-      <CallBack />
-      <WhyChooseUs />
-      <Features />
-      <Services />
-      <Testimonial testimonials={testimonials} type="static" />
     </>
   );
 };
 
-export async function getStaticProps() {
-  // Fetch testimonials using Axios
-  const response = await axios.get(`${process.env.ENDPOINT}/api/testimonials`);
-  const testimonials = response.data.testimonials;
-  return {
-    props: {
-      testimonials,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   // Fetch testimonials using Axios
+//   const response = await axios.get(`${process.env.ENDPOINT}/api/testimonials`);
+//   const testimonials = response.data.testimonials;
+//   return {
+//     props: {
+//       testimonials,
+//     },
+//   };
+// }
 
 export default index;

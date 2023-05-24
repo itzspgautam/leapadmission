@@ -1,5 +1,5 @@
 import { AppConfig } from "@/Config/AppConfig";
-import { setUser } from "@/Utils/AuthStorage";
+import { setUser } from "@/utils/AuthStorage";
 import axios from "axios";
 
 const { FirebaseAuth } = require("@/Config/FirebaseApp");
@@ -22,6 +22,7 @@ const socialLogin = (provider) => async (dispatch) => {
     type: types.LOGIN_REQUEST,
   });
   try {
+    z;
     const { user } = await signInWithPopup(FirebaseAuth, provider);
 
     const data = await saveUser(user);

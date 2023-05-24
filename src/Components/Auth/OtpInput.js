@@ -12,6 +12,8 @@ import {
 import "react-phone-input-2/lib/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import UserActions from "@/State/Actions/UserActions";
+import Colors from "@/Constants/Colors";
+import AuthActions from "@/State/Actions/AuthActions";
 
 const OtpInput = () => {
   const dispatch = useDispatch();
@@ -30,8 +32,12 @@ const OtpInput = () => {
     (state) => state.User
   );
 
+  const { verificationId, authError, authLoading } = useSelector(
+    (state) => state.Auth
+  );
+
   const otpSubmitHandler = () => {
-    dispatch(UserActions.verifyOtp(phoneAuth.confirmationResult, fullOtp));
+    dispatch(AuthActions.verifyPhone(verificationId, fullOtp));
   };
   return (
     <>
@@ -55,22 +61,27 @@ const OtpInput = () => {
               <PinInputField
                 mx={0.5}
                 onChange={(e) => setInputOtp1(e.target.value)}
+                _focus={{ borderColor: Colors.PRIMARY[500] }}
               />
               <PinInputField
                 mx={0.5}
                 onChange={(e) => setInputOtp2(e.target.value)}
+                _focus={{ borderColor: Colors.PRIMARY[500] }}
               />
               <PinInputField
                 mx={0.5}
                 onChange={(e) => setInputOtp3(e.target.value)}
+                _focus={{ borderColor: Colors.PRIMARY[500] }}
               />
               <PinInputField
                 mx={0.5}
                 onChange={(e) => setInputOtp4(e.target.value)}
+                _focus={{ borderColor: Colors.PRIMARY[500] }}
               />
               <PinInputField
                 mx={0.5}
                 onChange={(e) => setInputOtp5(e.target.value)}
+                _focus={{ borderColor: Colors.PRIMARY[500] }}
               />
               <PinInputField
                 mx={0.5}
@@ -100,6 +111,8 @@ const OtpInput = () => {
             onClick={() => otpSubmitHandler()}
             isLoading={userLoading}
             size={"md"}
+            bg={Colors.PRIMARY[500]}
+            fontWeight={"medium"}
             colorScheme="teal"
             loadingText="Verifying"
             spinnerPlacement="start"

@@ -1,6 +1,6 @@
 // get all sites of a user
 import DbConnect from "@/Config/dbConfig";
-import User from "@/Models/User";
+import User from "@/models/User";
 import { withAuth } from "./adminAuth";
 
 const handler = async (req, res) => {
